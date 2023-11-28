@@ -13,10 +13,10 @@ import org.springframework.boot.CommandLineRunner;
  
 
 @Component
-public class Initalize implements CommandLineRunner {
+public class Initialize implements CommandLineRunner {
     CustomerRepo customerRepository;
 
-    public Initalize(CustomerRepo customerRepository) {
+    public Initialize(CustomerRepo customerRepository) {
         this.customerRepository = customerRepository;
     }
 
