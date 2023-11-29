@@ -72,9 +72,10 @@ public class CustomerController {
     public String postCreateCustomer(Model model, @RequestParam("firstName") String firstName,
     @RequestParam("lname") String lastName,
     @RequestParam("email") String email,
-    @RequestParam("phoneNumber") String phoneNumber)
+    @RequestParam("phoneNumber") String phoneNumber,
+    @RequestParam("password") String password)
     {
-        customerService.createNewCustomer(firstName, lastName, phoneNumber, email);
+        customerService.createNewCustomer(firstName, lastName, phoneNumber, email,password);
         return "redirect:/uc1-customer-accounts";
     } 
 

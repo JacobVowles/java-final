@@ -40,8 +40,8 @@ public class CustomerService {
         return customerRepo.findByFirstNameAndLastName(firstName, lastName);
     }
 
-    public void createNewCustomer(String firstName, String lastName, String phoneNumber, String email) {
-        customerRepo.save(new CustomerAccount(firstName, lastName, phoneNumber, email));
+    public void createNewCustomer(String firstName, String lastName, String phoneNumber, String email, String password) {
+        customerRepo.save(new CustomerAccount(firstName, lastName, phoneNumber, email,password));
     }
     // public void deleteByEmail(String email) {
     //     customerRepo.deleteByEmail(email); <--- TODO this isn't working for some reason

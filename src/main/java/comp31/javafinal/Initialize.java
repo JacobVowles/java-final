@@ -31,14 +31,22 @@ public class Initialize implements CommandLineRunner {
     String[] emailProviders = {"@gmail.com","@hotmail.com","@proton.me","@yahoo.com"};
     Random rand = new Random();
 
+    String passwordChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+
     public void run(String... args) throws Exception {
         //default customers that gets added into the database
         for (int i = 0; i < 13; i++)
         {
+            String password = "";
+            for (int j = 0; j < 8; j++)
+            {
+                int randomIndex = rand.nextInt(passwordChars.length());
+                password += passwordChars.charAt(randomIndex);
+            }
             int randomNumber = rand.nextInt(4);
             firstName = faker.name().firstName();
             lastName = faker.name().lastName();
-            customerRepository.save(new CustomerAccount(firstName, lastName, faker.phoneNumber().cellPhone(), firstName + "." + lastName + emailProviders[randomNumber]));
+            customerRepository.save(new CustomerAccount(firstName, lastName, faker.phoneNumber().cellPhone(), firstName + "." + lastName + emailProviders[randomNumber], password));
         }
 
         orderRepo.save(new Order( 1, "Cake", "Chocolate", "Please add balloons and happy birthday", "Incomplete" ));
