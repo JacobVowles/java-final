@@ -43,9 +43,7 @@ public class CustomerService {
     public void createNewCustomer(String firstName, String lastName, String phoneNumber, String email, String password) {
         customerRepo.save(new CustomerAccount(firstName, lastName, phoneNumber, email,password));
     }
-    // public void deleteByEmail(String email) {
-    //     customerRepo.deleteByEmail(email); <--- TODO this isn't working for some reason
-    // }
+
     public void deleteById(Integer id) {
         customerRepo.deleteById(id);
     }

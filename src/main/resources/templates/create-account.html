@@ -19,18 +19,18 @@
     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; height: 100vh;">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4">Customers</span>
+        <span class="fs-4">Best Bakery</span>
       </a>
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="/uc1" class="nav-link text-white" aria-current="page">
-            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+          <a href="/admin" class="nav-link text-white" aria-current="page">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#admin"></use></svg>
             Home
           </a>
         </li>
         <li>
-          <a href="/uc1-data-entry" class="nav-link text-white">
+          <a href="/home" class="nav-link active">
             <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
             Sign Up/Sign in
           </a>
@@ -48,7 +48,7 @@
           </a>
         </li>
         <li>
-          <a href="/uc1-customer-accounts" class="nav-link active">
+          <a href="/customer-accounts" class="nav-link text-white">
             <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
             Customers
           </a>
@@ -69,49 +69,21 @@
       </div>
     </div>
     <div class="flexItem2">
-      <h1>Customer Accounts</h1>
-      <div class="table-container">
-      <table border="1">
-        <!--table borders not actually displaying???-->
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th colspan="2">Email</th>
-              
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="customer:${customers}">
-              <td th:text="${customer.firstName}"></td>
-              <td th:text="${customer.lastName}"></td>
-              <td th:text="${customer.email}"></td>
-              <td>
-                <form th:action="@{/delete-customer}" method="POST">
-                  <input type="hidden" name="customerId" th:value="${customer.customerId}" class="hidden-input"/>
-                  <button class="delete-buttons">X</button>
-                </form>            
-              </td>
-            </tr>
-          </tbody>
-      </table>
-      </div>
-      
-      <form action ="/uc1filter">
-        <label for="filter">Filter by:</label>
-        <select name="filter">
-          <option value="firstName">First Name</option>
-          <option value="lastName">Last Name</option>
-          <option value="email">Email</option>
-        </select>
-        <input type="text" name="input"></input>
-        <button>Filter</button>
-      </form>
-      <a href="/uc1-data-entry"><button>Data Entry</button></a>
-        
-     
-    </div>
-   
+        <h2>Data Entry</h2>
+        <h4>Sign up</h4>
+        <div class="data-entry">
+        <form action="/create-customer" method="POST">
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="firstName" value="John"><br>
+            <label for="lastName">Last name:</label><br>
+            <input type="text" id="lname" name="lname" value="Doe"><br>
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email" value=""><br>
+            <label for="phoneNumber">Phone Number</label><br>
+            <input type="text" id="phoneNumber" name="phoneNumber" value=""><br><br>
+            <input type="submit" value="Submit">
+        </form>
+        </div>
   </div>
   </body>
 </html>
