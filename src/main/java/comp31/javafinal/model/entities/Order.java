@@ -27,6 +27,8 @@ public class Order {
 
     @Column(name = "item_type")
     private String itemType;
+    //Change this to Make it Link with items List probably itemlist id or something. I think i can just bring in the 
+    //Fkey for the id
 
     @Column(name = "flavour")
     private String flavour;

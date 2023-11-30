@@ -85,4 +85,33 @@ public class CustomerController {
         customerService.deleteById(customerId);
         return "redirect:/uc1-customer-accounts";
     }
+
+     // Handling the get request for displaying items
+    @GetMapping("/items")
+    public String getItems(Model model) {
+        model.addAttribute("items", itemsRepo.findAll());
+        return "items";
+    }
+    /* FIX BUY PATHING IG*/
+    // Handling the get request for displaying items in a buy view
+    @GetMapping("/Buy")
+    public String getBuy(Model model) {
+        model.addAttribute("items", itemsRepo.findAll());
+        return "Buy";
+    }
+
+    // Handling the post request for buying items
+    @PostMapping("/buy-item")
+    public String buyItem(RedirectAttributes redirectAttributes, @RequestParam("itemName") String itemName,
+            @RequestParam("qty") int qty) {
+        // Updating item quantity and providing feedback messages
+        int updatedRows = itemsRepo.updateItemQuantity(itemName, qty);
+        if (updatedRows > 0) {
+            redirectAttributes.addFlashAttribute("successMessage", "Item purchased successfully");
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "Invalid item or quantity");
+        }
+        return "redirect:/Buy";
+    }
+
 }
