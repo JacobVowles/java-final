@@ -49,8 +49,8 @@ public class Initialize implements CommandLineRunner {
         orderRepo.save(new Order( 1, "Cake", "Chocolate", "Please add balloons and happy birthday", "Incomplete" ));
         orderRepo.save(new Order( 2, "Cake", "Vanilla", "Orange icing and pumpkin drawings", "Incomplete" ));
         orderRepo.save(new Order( 3, "Cake", "Red Velvet", "Hearts and flowers drawn on the cake please", "Complete" ));
-        itemsRepo.save(new Items("Baguette", "Made from the french", 7));
-        itemsRepo.save(new Items("French Toast", "French Toast in the Morning", 2));
-        itemsRepo.save(new Items("White Bread", "Plain", 4));
+        itemsRepo.save(new Items("Baguette", "Made from the french", 7, 3.50));
+        itemsRepo.save(new Items("French Toast", "French Toast in the Morning", 2, 4.00));
+        itemsRepo.save(new Items("White Bread", "Plain", 4, 0.10));
     }
 }

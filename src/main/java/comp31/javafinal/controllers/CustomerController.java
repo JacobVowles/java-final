@@ -6,16 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import comp31.javafinal.repos.itemsRepo;
 import comp31.javafinal.services.CustomerService;
 
 @Controller
 public class CustomerController {
-
+    ItemsRepo itemsRepo;
     CustomerService customerService;
 
     
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerService customerService, IntemsRepo itemsRepo) {
         this.customerService = customerService;
+        this.itemsRepo = itemsRepo;
     }
 
     @GetMapping("/uc1")
@@ -87,21 +89,15 @@ public class CustomerController {
     }
 
      // Handling the get request for displaying items
-    @GetMapping("/items")
-    public String getItems(Model model) {
-        model.addAttribute("items", itemsRepo.findAll());
-        return "items";
-    }
-    /* FIX BUY PATHING IG*/
     // Handling the get request for displaying items in a buy view
-    @GetMapping("/Buy")
+    @GetMapping("/Buy") //Change Name to Order Menu
     public String getBuy(Model model) {
         model.addAttribute("items", itemsRepo.findAll());
         return "Buy";
     }
 
     // Handling the post request for buying items
-    @PostMapping("/buy-item")
+    @PostMapping("/buy-item")  //Change it so it can input multiple arrays? i guess then make it into a order
     public String buyItem(RedirectAttributes redirectAttributes, @RequestParam("itemName") String itemName,
             @RequestParam("qty") int qty) {
         // Updating item quantity and providing feedback messages

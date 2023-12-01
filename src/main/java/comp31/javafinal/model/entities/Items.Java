@@ -15,33 +15,21 @@ public class Items {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
+    @Column(name ="item_name")
     String itemName;
+    @Column(name = "desc")
     String description;
+    @Column(name ="Qty")
     Integer Qty;
+    @Column(name ="price")
+    Integer price;
     
 
-    // DO SOMETHING LIKE THIS
-    /*  @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
-    private Integer customerId;
-    
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "phone_number")
-    private String phoneNumber;
-
-    @Column(name="email")
-    private String email;
-    */
-    public Items(String itemName, String description, Integer Qty) {
+    public Items(String itemName, String description, Integer Qty, Integer price) {
         this.itemName = itemName;
         this.description= description;
         this.Qty = Qty;
+        this.price = price;
     }
    
 }
