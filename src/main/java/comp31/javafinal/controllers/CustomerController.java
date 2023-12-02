@@ -70,7 +70,7 @@ public class CustomerController {
     //mapping for creating a new customer
     @PostMapping("/create-customer")
     public String postCreateCustomer(Model model, @RequestParam("firstName") String firstName,
-    @RequestParam("lname") String lastName,
+    @RequestParam("lastName") String lastName,
     @RequestParam("email") String email,
     @RequestParam("phoneNumber") String phoneNumber,
     @RequestParam("password") String password)
@@ -86,4 +86,12 @@ public class CustomerController {
         customerService.deleteById(customerId);
         return "redirect:/customer-accounts";
     }
+
+    //mapping for login
+    @GetMapping("/Login-Form")
+    public String login() {
+        return "Login-Form";
+    }
+
+
 }

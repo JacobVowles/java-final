@@ -47,6 +47,7 @@ body {
 }
 .data-entry {
   background-color: antiquewhite;
+  padding: 20px;
 }
 
 .delete-buttons {
