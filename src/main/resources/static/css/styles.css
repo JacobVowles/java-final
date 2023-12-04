@@ -69,3 +69,18 @@ thead th {
   position: sticky;
   top: 0;
 }
+
+#myCarousel {
+  width: 100vw;
+  height: 70vh;
+}
+
+.carousel-item img {
+  width: 100vw;
+  height: 70vh;
+  object-fit: cover;
+}
+
+header {
+  width: 100vw;
+}

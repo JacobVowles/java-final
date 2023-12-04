@@ -29,7 +29,10 @@ public class Initialize implements CommandLineRunner {
     String firstName, lastName, phoneNumber, email;
 
     String[] emailProviders = {"@gmail.com","@hotmail.com","@proton.me","@yahoo.com"};
+    String[] roles = {"Admin", "Baker", "Sales Rep"};
     Random rand = new Random();
+
+    
 
     String passwordChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
 
@@ -52,5 +55,8 @@ public class Initialize implements CommandLineRunner {
         orderRepo.save(new Order( 1, "Cake", "Chocolate", "Please add balloons and happy birthday", "Incomplete" ));
         orderRepo.save(new Order( 2, "Cake", "Vanilla", "Orange icing and pumpkin drawings", "Incomplete" ));
         orderRepo.save(new Order( 3, "Cake", "Red Velvet", "Hearts and flowers drawn on the cake please", "Complete" ));
+
+
+
     }
 }
