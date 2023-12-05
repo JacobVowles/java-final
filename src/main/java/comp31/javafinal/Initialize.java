@@ -3,6 +3,7 @@ package comp31.javafinal;
 import org.springframework.stereotype.Component;
 
 import comp31.javafinal.model.entities.CustomerAccount;
+import comp31.javafinal.model.entities.Products;
 import comp31.javafinal.model.entities.Order;
 import comp31.javafinal.model.repos.CustomerRepo;
 import comp31.javafinal.model.repos.OrderRepo;
@@ -13,7 +14,7 @@ import java.util.Random;
 
 import org.springframework.boot.CommandLineRunner;
  
-import comp31.database_demo.repos.ItemsRepo;
+import comp31.javafinal.model.repos.ProductsRepo;
 
 
   
@@ -21,14 +22,14 @@ import comp31.database_demo.repos.ItemsRepo;
 public class Initialize implements CommandLineRunner {
     CustomerRepo customerRepository;
     OrderRepo orderRepo;
-    ItemsRepo itemsRepo;
+    ProductsRepo productsRepo;
 
-    public Initialize(CustomerRepo customerRepository, OrderRepo orderRepo, ItemsRepo itemsRepo;) {
+    public Initialize(CustomerRepo customerRepository, OrderRepo orderRepo, ProductsRepo productsRepo) {
         this.customerRepository = customerRepository;
         this.orderRepo = orderRepo;
-        this.itemsRepo = itemsRepo;
+        this.productsRepo = productsRepo;
     }
-      fqwqw
+      
     //Faker being used for easy default data
     Faker faker = new Faker();
     String firstName, lastName, phoneNumber, email;
@@ -49,8 +50,8 @@ public class Initialize implements CommandLineRunner {
         orderRepo.save(new Order( 1, "Cake", "Chocolate", "Please add balloons and happy birthday", "Incomplete" ));
         orderRepo.save(new Order( 2, "Cake", "Vanilla", "Orange icing and pumpkin drawings", "Incomplete" ));
         orderRepo.save(new Order( 3, "Cake", "Red Velvet", "Hearts and flowers drawn on the cake please", "Complete" ));
-        itemsRepo.save(new Items("Baguette", "Made from the french", 7, 3.50));
-        itemsRepo.save(new Items("French Toast", "French Toast in the Morning", 2, 4.00));
-        itemsRepo.save(new Items("White Bread", "Plain", 4, 0.10));
+        productsRepo.save(new Products("Baguette", "Made from the french", 7, 3.50));
+        productsRepo.save(new Products("French Toast", "French Toast in the Morning", 2, 4.00));
+        productsRepo.save(new Products("White Bread", "Plain", 4, 0.10));
     }
 }
