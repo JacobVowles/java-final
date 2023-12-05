@@ -52,7 +52,7 @@ public class EmployeeController {
 
     @GetMapping("/baker-home")
     public String bakerHome() {
-        return "/uc2html";
+        return "/uc2";
     }
 
     // @GetMapping("/sales-rep-home") nothing here yet
