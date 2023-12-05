@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +14,11 @@ import lombok.NoArgsConstructor;
 @Data
 @Table(name = "Employee")
 @NoArgsConstructor
-public class EmployeeAccount {
+public class Employees {
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
+@SequenceGenerator(name = "employeeIdGenerator", sequenceName = "employee_id_seq", initialValue = 1000)
 @Column(name = "employee_id")
 private Integer employeeId;
 
@@ -27,15 +29,20 @@ private String firstName;
 private String lastName;
 
 @Column(name = "employeeNumber")
-private Integer employeeNumber;
-    
+private String employeeNumber;
+
+@Column(name = "password")
+private String password;
+
 @Column(name="role")
 private String role;
 
-public EmployeeAccount(String pFirstName, String pLastName, Integer pEmployeeNumber, String pRole) {
+
+public Employees(String pFirstName, String pLastName, String pEmployeeNumber, String pPassword, String pRole) {
     this.firstName = pFirstName;
     this.lastName = pLastName;
     this.employeeNumber = pEmployeeNumber;
+    this.password = pPassword;
     this.role = pRole;
 }
 

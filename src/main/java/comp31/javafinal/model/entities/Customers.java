@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Table(name = "Customer")
 @NoArgsConstructor
-public class CustomerAccount {
+public class Customers {
 
     //Columns for customer table
     @Id
@@ -36,7 +36,7 @@ public class CustomerAccount {
     @Column(name = "password")
     private String password;
     
-    public CustomerAccount(String pFirstName, String pLastName, String pPhoneNumber,String pEmail,String pPassword) {
+    public Customers(String pFirstName, String pLastName, String pPhoneNumber,String pEmail,String pPassword) {
         this.firstName = pFirstName;
         this.lastName = pLastName;
         this.phoneNumber = pPhoneNumber;
