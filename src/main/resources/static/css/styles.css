@@ -37,7 +37,7 @@ th {
 }
 
 body {
-  background-color: bisque !important;
+  background-color: #ffdab9 !important;
 }
 
 .title-name {
@@ -47,6 +47,7 @@ body {
 }
 .data-entry {
   background-color: antiquewhite;
+  padding: 20px;
 }
 
 .delete-buttons {
@@ -67,4 +68,19 @@ body {
 thead th {
   position: sticky;
   top: 0;
+}
+
+#myCarousel {
+  width: 100vw;
+  height: 70vh;
+}
+
+.carousel-item img {
+  width: 100vw;
+  height: 70vh;
+  object-fit: cover;
+}
+
+header {
+  width: 100vw;
 }

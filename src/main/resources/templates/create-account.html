@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/styles.css}"
+      href="../static/css/styles.css"
+    </link>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <header class="p-3 text-bg-dark">
+      <div class="container">
+        <div
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+        >
+          <a
+            href="/"
+            class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+          >
+            <svg
+              class="bi me-2"
+              width="40"
+              height="32"
+              role="img"
+              aria-label="Bootstrap"
+            >
+              <use xlink:href="#bootstrap"></use>
+            </svg>
+          </a>
+          <!-- Bootstrap navbar code -->
+          <ul
+            class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-between mb-md-0"
+          >
+            <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
+            <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+            <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+            <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+            <li>
+              <a href="#" class="nav-link px-2 text-white">Place an order</a>
+            </li>
+          </ul>
+          <h2 class="title-name mb-0">Best Bakery</h2>
+          <form
+            class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"
+            role="search"
+            data-np-intersection-state="visible"
+            data-np-autofill-form-type="other"
+            data-np-checked="1"
+            data-np-watching="1"
+          >
+            <input
+              type="search"
+              class="form-control form-control-dark text-bg-dark"
+              placeholder="Search..."
+              aria-label="Search"
+              data-np-intersection-state="observed"
+            />
+          </form>
+
+          <div class="text-end">
+            <a href="/Login-Form"
+              ><button type="button" class="btn btn-outline-light me-2">
+                Login
+              </button></a
+            >
+            <a href="/create-account">
+              <button type="button" class="btn btn-warning">Sign-up</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="flexItem2">
+      <br><br>
+      <div class="data-entry">
+        <form action="/create-customer" method="POST">
+          <h1 class="h3 mb-4">Sign up</h1>
+          <div class="row mb-3">
+            <div class="col">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fname"
+                  placeholder=""
+                  name="firstName"
+                />
+                <label for="fname">First Name</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lname"
+                  placeholder=""
+                  name="lastName"
+                />
+                <label for="lname">Last Name</label>
+              </div>
+            </div>
+          </div>
+            <br>
+            <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              placeholder=""
+              name="email"
+            />
+            <label for="email">Email</label>
+            <br>
+            <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="phoneNumber"
+              placeholder=""
+              name="phoneNumber"
+            />
+            <label for="phoneNumber">Phone Number</label>
+            <br>
+            <div class="form-floating">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder=""
+              name="password"
+            />
+            <label for="password">Password</label>
+            <br>
+          </div>
+          <button class="btn btn-primary w-100 py-2" type="submit">
+            Sign up
+          </button>
+        </form>
+        </div>
+  </div>
+  </body>
+</html>

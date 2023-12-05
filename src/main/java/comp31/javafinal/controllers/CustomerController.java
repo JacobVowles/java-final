@@ -4,11 +4,13 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import comp31.javafinal.services.CustomerService;
 
 @Controller
+@RequestMapping
 public class CustomerController {
 
     CustomerService customerService;
@@ -18,16 +20,16 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/uc1")
+    @GetMapping("/admin")
     public String uc1() {
-        return "uc1";
+        return "admin";
     }
 
-    @GetMapping("/uc1-customer-accounts")
+    @GetMapping("/customer-accounts")
     public String uc1(Model model) {
         // customerService.deleteByEmail("JaneDoe@gmail.com"); // error of cannot reliably process 'remove' call
         model.addAttribute("customers", customerService.findAll());
-        return "uc1-customer-accounts";
+        return "customer-accounts";
     }
 
 
@@ -39,7 +41,7 @@ public class CustomerController {
         {
             if(input.equals(""))
             {
-                return "redirect:/uc1-customer-accounts";
+                return "redirect:/customer-accounts";
             }
             model.addAttribute("customers", customerService.findByFirstNameLike(input));
         }
@@ -47,7 +49,7 @@ public class CustomerController {
         {
             if(input.equals(""))
             {
-                return "redirect:/uc1-customer-accounts";
+                return "redirect:/customer-accounts";
             }
             model.addAttribute("customers", customerService.findByLastName(input));
         }
@@ -55,27 +57,28 @@ public class CustomerController {
         {
             if(input.equals(""))
             {
-                return "redirect:/uc1-customer-accounts";
+                return "redirect:/customer-accounts";
             }
             model.addAttribute("customers", customerService.findByEmail(input));
         }
-        return "uc1-customer-accounts";
+        return "customer-accounts";
     }
-    @GetMapping ("/uc1-data-entry")
+    @GetMapping ("/create-account")
     String uc1DataEntry()
     {
-        return "uc1-data-entry";
+        return "create-account";
     }
 
     //mapping for creating a new customer
     @PostMapping("/create-customer")
     public String postCreateCustomer(Model model, @RequestParam("firstName") String firstName,
-    @RequestParam("lname") String lastName,
+    @RequestParam("lastName") String lastName,
     @RequestParam("email") String email,
-    @RequestParam("phoneNumber") String phoneNumber)
+    @RequestParam("phoneNumber") String phoneNumber,
+    @RequestParam("password") String password)
     {
-        customerService.createNewCustomer(firstName, lastName, phoneNumber, email);
-        return "redirect:/uc1-customer-accounts";
+        customerService.createNewCustomer(firstName, lastName, phoneNumber, email,password);
+        return "redirect:/customer-accounts";
     } 
 
     //mapping for deleting a customer
@@ -83,6 +86,14 @@ public class CustomerController {
     public String postDeleteCustomer(Model model, @RequestParam("customerId") Integer customerId)
     {
         customerService.deleteById(customerId);
-        return "redirect:/uc1-customer-accounts";
+        return "redirect:/customer-accounts";
     }
+
+    //mapping for login
+    @GetMapping("/Login-Form")
+    public String login() {
+        return "Login-Form";
+    }
+
+
 }
