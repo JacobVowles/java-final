@@ -6,11 +6,16 @@ import comp31.javafinal.model.entities.Accounts;
 import comp31.javafinal.model.entities.Customers;
 import comp31.javafinal.model.entities.Employees;
 import comp31.javafinal.model.entities.Order;
+import comp31.javafinal.model.entities.Products;
 import comp31.javafinal.model.repos.AccountsRepo;
 import comp31.javafinal.model.repos.CustomerRepo;
 import comp31.javafinal.model.repos.EmployeeRepo;
 import comp31.javafinal.model.repos.OrderRepo;
+
 import comp31.javafinal.util.EmailWriter;
+
+import comp31.javafinal.model.repos.ProductsRepo;
+
 
 import com.github.javafaker.Faker;
 
@@ -23,14 +28,13 @@ import org.springframework.boot.CommandLineRunner;
 public class Initialize implements CommandLineRunner {
     CustomerRepo customerRepo;
     OrderRepo orderRepo;
+    ProductsRepo productsRepo;
     EmployeeRepo employeeRepo;
     AccountsRepo accountRepo;
 
-    public Initialize(CustomerRepo customerRepo, OrderRepo orderRepo, EmployeeRepo employeeRepo, AccountsRepo accountRepo) {
-        this.customerRepo = customerRepo;
+    public Initialize(CustomerRepo customerRepository, OrderRepo orderRepo) {
+        this.customerRepo = customerRepository;
         this.orderRepo = orderRepo;
-        this.employeeRepo = employeeRepo;
-        this.accountRepo = accountRepo;
     }
 
     //Faker being used for easy default data
@@ -103,6 +107,9 @@ public class Initialize implements CommandLineRunner {
         Order order2 = new Order( 2, "Cake", "Vanilla", "Orange icing and pumpkin drawings", "Incomplete" );
         Order order3 = new Order( 3, "Cake", "Red Velvet", "Hearts and flowers drawn on the cake please", "Complete" );
         orderRepo.save(order1);
+        productsRepo.save(new Products("Baguette", "Made from the french", 7, 3.50));
+        productsRepo.save(new Products("French Toast", "French Toast in the Morning", 2, 4.00));
+        productsRepo.save(new Products("White Bread", "Plain", 4, 0.10));
         orderRepo.save(order2);
         orderRepo.save(order3);
 
