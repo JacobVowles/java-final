@@ -1,12 +1,13 @@
 package comp31.javafinal.controllers;
 import org.springframework.ui.Model;
-
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import comp31.javafinal.model.entities.Customers;
 import comp31.javafinal.services.CustomerService;
 
 @Controller
@@ -32,7 +33,19 @@ public class CustomerController {
         return "customer-accounts";
     }
 
-
+    @PostMapping("find-customer")
+    public String findCustomer(@RequestParam String email, @RequestParam String password) {
+        email = email.trim();
+        password = password.trim();
+        Boolean customerFound = customerService.findByEmailAndPassword(email, password).size() > 0;
+        if (customerFound) {
+            return "redirect:/customer-home";
+        }
+        else
+        {
+            return "redirect:/Login-Form";
+        }
+    }
     //mapping for filter based on first name, last name, email
     @GetMapping("/uc1filter")
     public String filteredUc1(@RequestParam String filter, @RequestParam String input, Model model)

@@ -20,6 +20,8 @@ List<Customers> findByFirstName(String firstName);
 
 List<Customers> findByLastName(String lastName);
 
+List<Customers> findByEmailAndPassword(String email, String password);
+
 List<Customers> findByPhoneNumber(String phoneNumber);
 
 List<Customers> findByFirstNameAndLastName(String firstName, String lastName);

@@ -55,6 +55,11 @@ public class EmployeeController {
         return "/uc2";
     }
 
+    @GetMapping("/employee-login")
+    public String employeeLogin() {
+        return "/employee-login";
+    }
+
     // @GetMapping("/sales-rep-home") nothing here yet
     // public String salesRepHome() {
     //     return "/uc3html";
