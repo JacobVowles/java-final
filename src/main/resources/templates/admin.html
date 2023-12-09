@@ -19,24 +19,24 @@
     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; height: 100vh;">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4">Best Bakery</span>
+        <span class="fs-4">Admin Home Page</span>
       </a>
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="/uc1" class="nav-link text-white" aria-current="page">
-            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+          <a href="/admin" class="nav-link active" aria-current="page">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#admin"></use></svg>
             Home
           </a>
         </li>
         <li>
-          <a href="/uc1" class="nav-link active">
-            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-            Sign Up/Sign in
+          <a href="/customer-accounts" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+            Customers
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link text-white">
+          <a href="/uc2AllOrders" class="nav-link text-white">
             <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
             Orders
           </a>
@@ -48,9 +48,9 @@
           </a>
         </li>
         <li>
-          <a href="/uc1-customer-accounts" class="nav-link text-white">
+          <a href="/" class="nav-link text-white">
             <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-            Customers
+            Log Out
           </a>
         </li>
       </ul>
@@ -69,21 +69,8 @@
       </div>
     </div>
     <div class="flexItem2">
-        <h2>Data Entry</h2>
-        <h4>Sign up</h4>
-        <div class="data-entry">
-        <form action="/create-customer" method="POST">
-            <label for="fname">First name:</label><br>
-            <input type="text" id="fname" name="firstName" value="John"><br>
-            <label for="lastName">Last name:</label><br>
-            <input type="text" id="lname" name="lname" value="Doe"><br>
-            <label for="email">Email:</label><br>
-            <input type="text" id="email" name="email" value=""><br>
-            <label for="phoneNumber">Phone Number</label><br>
-            <input type="text" id="phoneNumber" name="phoneNumber" value=""><br><br>
-            <input type="submit" value="Submit">
-        </form>
-        </div>
+      <h1>Admin Home</h1>
+    </div>
   </div>
   </body>
 </html>

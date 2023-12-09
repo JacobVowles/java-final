@@ -25,7 +25,7 @@ public class Order {
     @Column(name = "customer_id")
     private Integer customerId;
 
-    @Column(name = "item_type")
+    @Column(name = "item_type")  //Change this to Products so it can get a array.
     private String itemType;
 
     @Column(name = "flavour")
