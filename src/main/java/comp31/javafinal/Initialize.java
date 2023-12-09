@@ -32,9 +32,12 @@ public class Initialize implements CommandLineRunner {
     EmployeeRepo employeeRepo;
     AccountsRepo accountRepo;
 
-    public Initialize(CustomerRepo customerRepository, OrderRepo orderRepo) {
+    public Initialize(CustomerRepo customerRepository, OrderRepo orderRepo, AccountsRepo accountRepo, EmployeeRepo employeeRepo, ProductsRepo productsRepo) {
         this.customerRepo = customerRepository;
         this.orderRepo = orderRepo;
+        this.accountRepo = accountRepo;
+        this.employeeRepo = employeeRepo;
+        this.productsRepo = productsRepo;
     }
 
     //Faker being used for easy default data

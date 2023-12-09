@@ -29,6 +29,11 @@ public class CustomerController {
         return "admin";
     }
 
+    @GetMapping("/customer-login")
+    public String customerLogin() {
+        return "customer-login";
+    }
+    
     @GetMapping("/customer-accounts")
     public String uc1(Model model) {
         // customerService.deleteByEmail("JaneDoe@gmail.com"); // error of cannot reliably process 'remove' call
@@ -46,7 +51,7 @@ public class CustomerController {
         }
         else
         {
-            return "redirect:/Login-Form";
+            return "redirect:/customer-login";
         }
     }
     //mapping for filter based on first name, last name, email
