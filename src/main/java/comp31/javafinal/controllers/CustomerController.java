@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import comp31.javafinal.model.entities.Products;
 
+import comp31.javafinal.model.entities.Products;
+import comp31.javafinal.services.AccountService;
 import comp31.javafinal.services.CustomerService;
 import comp31.javafinal.model.repos.ProductsRepo;
 
@@ -17,11 +18,12 @@ public class CustomerController {
 
     CustomerService customerService;
     ProductsRepo productsRepo;
-
+    AccountService accountsService;
     
-    public CustomerController(CustomerService customerService, ProductsRepo productsRepo) {
+    public CustomerController(CustomerService customerService, ProductsRepo productsRepo, AccountService accountsService) {
         this.customerService = customerService;
         this.productsRepo = productsRepo;
+        this.accountsService = accountsService;
     }
 
     @GetMapping("/admin")
@@ -106,6 +108,7 @@ public class CustomerController {
     @PostMapping("/delete-customer")
     public String postDeleteCustomer(Model model, @RequestParam("customerId") Integer customerId)
     {
+        accountsService.deleteById(customerId);
         customerService.deleteById(customerId);
         return "redirect:/customer-accounts";
     }
