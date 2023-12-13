@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import comp31.javafinal.model.entities.Order;
 import comp31.javafinal.model.repos.OrderRepo;
+import comp31.javafinal.model.repos.ProductsRepo;
 import comp31.javafinal.services.BakerService;
 
 @Controller
@@ -15,11 +16,13 @@ public class BakerController {
     
     BakerService bakerService;
     OrderRepo orderRepo;
+    ProductsRepo productRepo;
     
     //Constructor
-    public BakerController(BakerService bakerService, OrderRepo orderRepo) {
+    public BakerController(BakerService bakerService, OrderRepo orderRepo, ProductsRepo productRepo) {
         this.bakerService = bakerService;
         this.orderRepo = orderRepo;
+        this.productRepo = productRepo;
     }
 
     //The index page
@@ -47,6 +50,11 @@ public class BakerController {
         Order order = bakerService.findByOrderId(orderId);
         model.addAttribute("order", order);
         return "uc2ViewDetails";
+    }
+    @GetMapping("/product") //Change Name to Order Menu
+    public String getProducts(Model model) {
+        model.addAttribute("products", productRepo.findAll());
+        return "/product";
     }
 
     //Displays all orders with the incomplete status
