@@ -81,10 +81,10 @@
             <input type="hidden" name="orderId" th:value="${order.orderId}">
             <button>Details</button>
         </form>
-        </td>
+        </td>   
         
           <td th:text="${order.orderId}"></td>
-          <td th:text="${order.itemType}"></td>
+          <td th:text="${order.note}"></td>
             <td th:text="${order.status}"></td>
             <td>
               <form action="/uc2MarkComplete">
