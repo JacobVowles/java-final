@@ -14,15 +14,15 @@ import comp31.javafinal.model.entities.Products;
 import comp31.javafinal.services.AccountService;
 import comp31.javafinal.services.CustomerService;
 import comp31.javafinal.model.repos.ProductsRepo;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Controller
 @RequestMapping
 public class CustomerController {
-
+    // MOST JACOB
     CustomerService customerService;
-    ProductsRepo productsRepo;
+    ProductsRepo productsRepo; //marco, all references to products are marco's
     AccountService accountsService;
     
     public CustomerController(CustomerService customerService, ProductsRepo productsRepo, AccountService accountsService) {
@@ -54,7 +54,7 @@ public class CustomerController {
         password = password.trim();
         Boolean customerFound = customerService.findByEmailAndPassword(email, password).size() > 0;
         if (customerFound) {
-            return "redirect:/customer-home";
+            return "redirect:/uc3";
         }
         else
         {
@@ -129,7 +129,6 @@ public class CustomerController {
         model.addAttribute("products", productsRepo.findAll());
         return "uc3BuyProducts";
     }
-
     // Handling the post request for buying products
     @PostMapping("/buy-products") //MARCO DE MELO
     public String buyProducts(RedirectAttributes redirectAttributes,

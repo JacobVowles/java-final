@@ -24,12 +24,12 @@ import java.util.Random;
 
 import org.springframework.boot.CommandLineRunner;
  
-
+// 90% of this I Jacob (me) made
 @Component
 public class Initialize implements CommandLineRunner {
     CustomerRepo customerRepo;
     OrderRepo orderRepo;
-    ProductsRepo productsRepo;
+    ProductsRepo productsRepo; //marco
     EmployeeRepo employeeRepo;
     AccountsRepo accountRepo;
 
@@ -94,11 +94,11 @@ public class Initialize implements CommandLineRunner {
         
 
         //Default Customers
-        Customers cust1 = new Customers("Freddy", "Fish", "1234567890", "","");
+        Customers cust1 = new Customers("Freddy", "Fish", "1234567890", "FreddyFish@proton.me","123");
         customerRepo.save(cust1);
-        Customers cust2 = new Customers("Casey", "Saber", "0987654321", "","");
+        Customers cust2 = new Customers("Casey", "Saber", "0987654321", "CaseySaber@hotmail.com","123");
         customerRepo.save(cust2);
-        Customers cust3 = new Customers("Jenny", "Said", "1234567890", "","");
+        Customers cust3 = new Customers("Jenny", "Said", "1234567890", "JennySaid@gmail.com","123");
         customerRepo.save(cust3);
         //Default Employees
         Employees emp1 = new Employees("T", "J", "e1234", "password", "Admin");
@@ -111,6 +111,8 @@ public class Initialize implements CommandLineRunner {
         Order order1 = new Order( 1 , "Please add balloons and happy birthday", "Incomplete" );
         Order order2 = new Order( 2, "Orange icing and pumpkin drawings", "Incomplete" );
         Order order3 = new Order( 3, "Hearts and flowers drawn on the cake please", "Complete" );
+        //ORDERS ARE KIAN
+        
         orderRepo.save(order1);
         //MARCO DE MELO
         productsRepo.save(new Products("Baguette", "Made from the french", 7, 3.50));
@@ -127,9 +129,9 @@ public class Initialize implements CommandLineRunner {
         employeeRepo.save(employee);
 
 
-        //EmailWriter being used to write to a file- testing, implementation will be for later
+        //EmailWriter being used to write to a file- testing, needed for product cancelation but didn't get their code
         String path = "email.txt";
-        String content = "Hello, this is a test email.";
+        String content = "Your order has been successfully cancelled! If you didn't cancel it, please contact support";
         EmailWriter emailWriter = new EmailWriter();
         emailWriter.writeEmail(path,content);
     }

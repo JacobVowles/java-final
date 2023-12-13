@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class Customers {
 
     //Columns for customer table
+    //ALL JACOB
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
@@ -43,6 +44,5 @@ public class Customers {
         this.email = pEmail;
         this.password = pPassword;
     }
-
 
 }
