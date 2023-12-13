@@ -108,9 +108,9 @@ public class Initialize implements CommandLineRunner {
         Employees emp3 = new Employees("Feebie", "Safin", "e1236", "password", "Sales Rep");
         employeeRepo.save(emp3);
         //Default Orders
-        Order order1 = new Order( 1, 4 , "Please add balloons and happy birthday", "Incomplete" );
-        Order order2 = new Order( 2, 4, "Orange icing and pumpkin drawings", "Incomplete" );
-        Order order3 = new Order( 3, 4, "Hearts and flowers drawn on the cake please", "Complete" );
+        Order order1 = new Order( 1 , "Please add balloons and happy birthday", "Incomplete" );
+        Order order2 = new Order( 2, "Orange icing and pumpkin drawings", "Incomplete" );
+        Order order3 = new Order( 3, "Hearts and flowers drawn on the cake please", "Complete" );
         orderRepo.save(order1);
         productsRepo.save(new Products("Baguette", "Made from the french", 7, 3.50));
         productsRepo.save(new Products("French Toast", "French Toast in the Morning", 2, 4.00));

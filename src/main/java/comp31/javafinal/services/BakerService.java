@@ -27,7 +27,7 @@ public class BakerService {
         return orderRepo.findByOrderId(id);
     }
 
-    public void addOrder(Integer customerId, Integer productId, String note, String status) {
-        orderRepo.save(new Order(customerId, productId,  note, status));
+    public void addOrder(Integer customerId, String note, String status) {
+        orderRepo.save(new Order(customerId, note, status));
     }
 }

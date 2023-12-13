@@ -33,8 +33,7 @@ public class Order {
      * @JoinColumn(name="product_id")
      * private Integer productId;
      */
-    @Column(name="product_id")
-    private Integer productId;
+
 
 
     @Column(name = "note")
@@ -44,9 +43,9 @@ public class Order {
     private String status;
 
     //Constructor
-    public Order( Integer customerId, Integer productId, String note, String status) {
+    public Order( Integer customerId,  String note, String status) {
         this.customerId = customerId;
-        this.productId = productId;
+        
         this.note = note;
         this.status = status;
     }
