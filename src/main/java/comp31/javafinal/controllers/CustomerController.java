@@ -119,7 +119,7 @@ public class CustomerController {
 
         return "uc3";
      }
-    @GetMapping("/uc3BuyProducts") //Change Name to Order Menu
+    @GetMapping("/BuyProducts") //Change Name to Order Menu
     public String getBuy(Model model) {
         model.addAttribute("products", productsRepo.findAll());
         return "uc3BuyProducts";
