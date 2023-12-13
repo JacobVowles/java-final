@@ -15,9 +15,9 @@ import comp31.javafinal.model.repos.ProductsRepo;
 @Controller
 @RequestMapping
 public class CustomerController {
-
+    // MOST JACOB
     CustomerService customerService;
-    ProductsRepo productsRepo;
+    ProductsRepo productsRepo; //marco, all references to products are marco's
     AccountService accountsService;
     
     public CustomerController(CustomerService customerService, ProductsRepo productsRepo, AccountService accountsService) {
@@ -49,7 +49,7 @@ public class CustomerController {
         password = password.trim();
         Boolean customerFound = customerService.findByEmailAndPassword(email, password).size() > 0;
         if (customerFound) {
-            return "redirect:/customer-home";
+            return "redirect:/uc3";
         }
         else
         {
@@ -113,18 +113,19 @@ public class CustomerController {
         return "redirect:/customer-accounts";
     }
 
+    // all marco below here
       @GetMapping("/uc3")
      public String getUc3(Model model)
      {
 
         return "uc3";
      }
+       
     @GetMapping("/uc3BuyProducts") //Change Name to Order Menu
     public String getBuy(Model model) {
         model.addAttribute("products", productsRepo.findAll());
         return "uc3BuyProducts";
     }
-
     // Handling the post request for buying products
     @PostMapping("/buy-product")  //Change it so it can input multiple arrays? i guess then make it into a order
     public String buyProduct(RedirectAttributes redirectAttributes, @RequestParam("productName") String productName,

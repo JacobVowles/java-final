@@ -11,7 +11,7 @@ import comp31.javafinal.services.EmployeeService;
 @Controller
 @RequestMapping
 public class EmployeeController {
-    
+    // ALL JACOB
     EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
@@ -35,7 +35,7 @@ public class EmployeeController {
             }
             else
             {
-                return "redirect:/sales-rep-home";
+                return "redirect:/employee-login";
             }
         }
         else
@@ -60,8 +60,4 @@ public class EmployeeController {
         return "/employee-login";
     }
 
-    // @GetMapping("/sales-rep-home") nothing here yet
-    // public String salesRepHome() {
-    //     return "/uc3html";
-    // }
 }

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name="Products")
 @NoArgsConstructor
 public class Products {
-
+    //ALL MARCO
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;

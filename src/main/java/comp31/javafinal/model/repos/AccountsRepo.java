@@ -8,3 +8,4 @@ import comp31.javafinal.model.entities.Accounts;
 public interface AccountsRepo extends ListCrudRepository<Accounts, Integer> {
     void deleteById(Integer id);
 }
+//JACOB
