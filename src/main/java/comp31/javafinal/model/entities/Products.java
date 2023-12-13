@@ -17,6 +17,7 @@ public class Products {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "product_id")
     Integer id;
     @Column(name ="product_name")
     String productName;

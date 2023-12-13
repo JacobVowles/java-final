@@ -67,12 +67,11 @@ public class BakerController {
     @PostMapping("/uc2AddOneOrder")
     public String postCreateCustomer(Model model, 
     @RequestParam("customerId") Integer customerId,
-    @RequestParam("itemType") String itemType,
-    @RequestParam("flavour") String flavour,
+    @RequestParam("itemType") Integer itemType,
     @RequestParam("note") String note,
     @RequestParam("status") String status)
     {
-        bakerService.addOrder(customerId, itemType, flavour, note, status);
+        bakerService.addOrder(customerId, itemType , note, status);
         return "redirect:/uc2AddOrder";
     } 
 

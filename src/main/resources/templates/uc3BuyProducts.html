@@ -103,6 +103,7 @@
             
               <tbody>
         <tr th:each="Products:${products}">
+            <td th:text="${Products.product_id}"></td>
             <td th:text="${Products.productName}"></td>
             <td th:text="' '"></td>
             <td th:text="${Products.description}"></td>

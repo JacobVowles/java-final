@@ -15,6 +15,7 @@ import comp31.javafinal.model.repos.ProductsRepo;
 
 import com.github.javafaker.Faker;
 
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.boot.CommandLineRunner;
@@ -86,15 +87,20 @@ public class Initialize implements CommandLineRunner {
             accountRepo.save(account);
         }
 
-        Order order1 = new Order( 1, "Cake", "Chocolate", "Please add balloons and happy birthday", "Incomplete" );
-        Order order2 = new Order( 2, "Cake", "Vanilla", "Orange icing and pumpkin drawings", "Incomplete" );
-        Order order3 = new Order( 3, "Cake", "Red Velvet", "Hearts and flowers drawn on the cake please", "Complete" );
+        Order order1 = new Order( 1, 4 , "Please add balloons and happy birthday", "Incomplete" );
+        Order order2 = new Order( 2, 4, "Orange icing and pumpkin drawings", "Incomplete" );
+        Order order3 = new Order( 3, 4, "Hearts and flowers drawn on the cake please", "Complete" );
         orderRepo.save(order1);
         productsRepo.save(new Products("Baguette", "Made from the french", 7, 3.50));
         productsRepo.save(new Products("French Toast", "French Toast in the Morning", 2, 4.00));
         productsRepo.save(new Products("White Bread", "Plain", 4, 0.10));
+        productsRepo.save(new Products("Cake","Really Fatening",9,5.50));
         orderRepo.save(order2);
         orderRepo.save(order3);
 
+    }
+
+    public List<Accounts> findAllAccounts() {
+        return accountRepo.findAll();
     }
 }
