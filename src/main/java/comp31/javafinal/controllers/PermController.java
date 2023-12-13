@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ import comp31.javafinal.services.PermsService;
 // Ian Haworth
 // Controller for updating user permissions
 @Controller
+@RequestMapping
 public class PermController {
     Logger logger = LoggerFactory.getLogger(PermController.class);
     PermsService permsService;
