@@ -120,6 +120,11 @@ public class Initialize implements CommandLineRunner {
         orderRepo.save(order3);
 
 
+        //Default Admin to log in with
+        Employees employee = new Employees("ad","min", "e" + 123,"password","Admin");
+        employeeRepo.save(employee);
+
+
         //EmailWriter being used to write to a file- testing, implementation will be for later
         String path = "email.txt";
         String content = "Hello, this is a test email.";
