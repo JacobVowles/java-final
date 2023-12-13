@@ -25,8 +25,8 @@ public class Order {
     @Column(name = "new_order_id")
     private Integer orderId;
     
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
+    
+    @Column(name = "customer_id")
     private Integer customerId;
 
 
