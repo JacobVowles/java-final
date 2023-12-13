@@ -40,7 +40,7 @@ public class EmployeeController {
         }
         else
         {
-            return "redirect:/Login-Form";
+            return "redirect:/employee-login";
         }
 
     }
@@ -53,6 +53,11 @@ public class EmployeeController {
     @GetMapping("/baker-home")
     public String bakerHome() {
         return "/uc2";
+    }
+
+    @GetMapping("/employee-login")
+    public String employeeLogin() {
+        return "/employee-login";
     }
 
     // @GetMapping("/sales-rep-home") nothing here yet

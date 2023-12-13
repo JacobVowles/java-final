@@ -1,6 +1,5 @@
 package comp31.javafinal.controllers;
 import org.springframework.ui.Model;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import comp31.javafinal.model.entities.Products;
+import comp31.javafinal.services.AccountService;
 import comp31.javafinal.services.CustomerService;
 import comp31.javafinal.model.repos.ProductsRepo;
 
@@ -18,11 +18,12 @@ public class CustomerController {
 
     CustomerService customerService;
     ProductsRepo productsRepo;
-
+    AccountService accountsService;
     
-    public CustomerController(CustomerService customerService, ProductsRepo productsRepo) {
+    public CustomerController(CustomerService customerService, ProductsRepo productsRepo, AccountService accountsService) {
         this.customerService = customerService;
         this.productsRepo = productsRepo;
+        this.accountsService = accountsService;
     }
 
     @GetMapping("/admin")
@@ -30,6 +31,11 @@ public class CustomerController {
         return "admin";
     }
 
+    @GetMapping("/customer-login")
+    public String customerLogin() {
+        return "customer-login";
+    }
+    
     @GetMapping("/customer-accounts")
     public String uc1(Model model) {
         // customerService.deleteByEmail("JaneDoe@gmail.com"); // error of cannot reliably process 'remove' call
@@ -37,7 +43,19 @@ public class CustomerController {
         return "customer-accounts";
     }
 
-
+    @PostMapping("find-customer")
+    public String findCustomer(@RequestParam String email, @RequestParam String password) {
+        email = email.trim();
+        password = password.trim();
+        Boolean customerFound = customerService.findByEmailAndPassword(email, password).size() > 0;
+        if (customerFound) {
+            return "redirect:/customer-home";
+        }
+        else
+        {
+            return "redirect:/customer-login";
+        }
+    }
     //mapping for filter based on first name, last name, email
     @GetMapping("/uc1filter")
     public String filteredUc1(@RequestParam String filter, @RequestParam String input, Model model)
@@ -90,6 +108,7 @@ public class CustomerController {
     @PostMapping("/delete-customer")
     public String postDeleteCustomer(Model model, @RequestParam("customerId") Integer customerId)
     {
+        accountsService.deleteById(customerId);
         customerService.deleteById(customerId);
         return "redirect:/customer-accounts";
     }

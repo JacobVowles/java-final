@@ -11,4 +11,5 @@ import comp31.javafinal.model.entities.Accounts;
 @Repository
 public interface AccountsRepo extends ListCrudRepository<Accounts, Integer> {
    public List<Accounts> findAll();
+   void deleteById(Integer id);
 }

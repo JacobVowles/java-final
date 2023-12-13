@@ -36,6 +36,9 @@ public class CustomerService {
         return customerRepo.findByPhoneNumber(phoneNumber);
     }
 
+    public List<Customers>findByEmailAndPassword(String email, String password) {
+        return customerRepo.findByEmailAndPassword(email, password);
+    }
     public List<Customers> findByFirstNameAndLastName(String firstName, String lastName) {
         return customerRepo.findByFirstNameAndLastName(firstName, lastName);
     }

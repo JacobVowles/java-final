@@ -11,7 +11,11 @@ import comp31.javafinal.model.repos.AccountsRepo;
 import comp31.javafinal.model.repos.CustomerRepo;
 import comp31.javafinal.model.repos.EmployeeRepo;
 import comp31.javafinal.model.repos.OrderRepo;
+
+import comp31.javafinal.util.EmailWriter;
+
 import comp31.javafinal.model.repos.ProductsRepo;
+
 
 import com.github.javafaker.Faker;
 
@@ -29,9 +33,12 @@ public class Initialize implements CommandLineRunner {
     EmployeeRepo employeeRepo;
     AccountsRepo accountRepo;
 
-    public Initialize(CustomerRepo customerRepository, OrderRepo orderRepo) {
+    public Initialize(CustomerRepo customerRepository, OrderRepo orderRepo, AccountsRepo accountRepo, EmployeeRepo employeeRepo, ProductsRepo productsRepo) {
         this.customerRepo = customerRepository;
         this.orderRepo = orderRepo;
+        this.accountRepo = accountRepo;
+        this.employeeRepo = employeeRepo;
+        this.productsRepo = productsRepo;
     }
 
     //Faker being used for easy default data
@@ -41,9 +48,6 @@ public class Initialize implements CommandLineRunner {
     String[] emailProviders = {"@gmail.com","@hotmail.com","@proton.me","@yahoo.com"};
     String[] roles = {"Admin", "Baker", "Sales Rep"};
     Random rand = new Random();
-
-    
-
     String passwordChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
 
     public void run(String... args) throws Exception {
@@ -87,6 +91,23 @@ public class Initialize implements CommandLineRunner {
             accountRepo.save(account);
         }
 
+        
+
+        //Default Customers
+        Customers cust1 = new Customers("Freddy", "Fish", "1234567890", "","");
+        customerRepo.save(cust1);
+        Customers cust2 = new Customers("Casey", "Saber", "0987654321", "","");
+        customerRepo.save(cust2);
+        Customers cust3 = new Customers("Jenny", "Said", "1234567890", "","");
+        customerRepo.save(cust3);
+        //Default Employees
+        Employees emp1 = new Employees("T", "J", "e1234", "password", "Admin");
+        employeeRepo.save(emp1);
+        Employees emp2 = new Employees("Jamie", "Smith", "e1235", "password", "Baker");
+        employeeRepo.save(emp2);
+        Employees emp3 = new Employees("Feebie", "Safin", "e1236", "password", "Sales Rep");
+        employeeRepo.save(emp3);
+        //Default Orders
         Order order1 = new Order( 1, 4 , "Please add balloons and happy birthday", "Incomplete" );
         Order order2 = new Order( 2, 4, "Orange icing and pumpkin drawings", "Incomplete" );
         Order order3 = new Order( 3, 4, "Hearts and flowers drawn on the cake please", "Complete" );
@@ -98,6 +119,12 @@ public class Initialize implements CommandLineRunner {
         orderRepo.save(order2);
         orderRepo.save(order3);
 
+
+        //EmailWriter being used to write to a file- testing, implementation will be for later
+        String path = "email.txt";
+        String content = "Hello, this is a test email.";
+        EmailWriter emailWriter = new EmailWriter();
+        emailWriter.writeEmail(path,content);
     }
 
     public List<Accounts> findAllAccounts() {
