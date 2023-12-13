@@ -22,12 +22,8 @@ public class BakerService {
     public List<Order> findByStatus(String status) {
         return orderRepo.findByStatus(status);
     }
-
     public Order findByOrderId(Integer id) {
         return orderRepo.findByOrderId(id);
     }
 
-    public void addOrder(Integer customerId, String itemType, String flavour, String note, String status) {
-        orderRepo.save(new Order(customerId, itemType, flavour, note, status));
-    }
 }

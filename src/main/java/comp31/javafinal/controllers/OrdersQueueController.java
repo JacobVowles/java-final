@@ -2,7 +2,9 @@ package comp31.javafinal.controllers;
 
 
 
+import comp31.javafinal.model.entities.Order;
 import comp31.javafinal.model.entities.OrdersQueue;
+import comp31.javafinal.model.repos.OrderRepo;
 import comp31.javafinal.model.repos.OrdersQueueRepo;
 import comp31.javafinal.services.OrdersQueueService;
 import org.slf4j.Logger;
@@ -13,20 +15,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
-public class OrdersController {
+public class OrdersQueueController {
 
 
     OrdersQueueService ordersQueueService;
     OrdersQueueRepo ordersQueueRepo;
+    OrderRepo orderRepo;
     // Logger for logging messages
-    Logger logger = LoggerFactory.getLogger(OrdersController.class);
+    Logger logger = LoggerFactory.getLogger(OrdersQueueController.class);
 
 
-    public OrdersController(OrdersQueueService ordersQueueService, OrdersQueueRepo ordersQueueRepo) {
+    public OrdersQueueController(OrdersQueueService ordersQueueService, OrdersQueueRepo ordersQueueRepo, OrderRepo orderRepo) {
 
         this.ordersQueueService = ordersQueueService;
         this.ordersQueueRepo = ordersQueueRepo;
+        this.orderRepo = orderRepo;
     }
 
 
@@ -52,9 +58,9 @@ public class OrdersController {
             return "redirect:/";
         }
     }
-    // Handling the get request for displaying the admin view
+
     @GetMapping("/orderForm")
-    public String getAdmin(Model model) {
+    public String getOrderForm() {
         return "orderForm";
     }
     // Handling the get request for displaying items in a buy view
@@ -65,9 +71,9 @@ public class OrdersController {
     }
     @PostMapping("/addOrder")
     public String addItem(Model model, @RequestParam("orderFName") String fName,@RequestParam("orderLName") String lName,
-                          @RequestParam("date") String date, @RequestParam("type") String type) {
+                          @RequestParam("date") String date, @RequestParam("type") String type, @RequestParam("description") String description) {
         // Saving a new order to the repository
-        ordersQueueRepo.save(new OrdersQueue(fName, lName, type, date));
+        ordersQueueRepo.save(new OrdersQueue(fName, lName, type, date, description));
         return "orderForm";
     }
 
@@ -79,9 +85,11 @@ public class OrdersController {
         return "redirect:/orderApproval";
     }
     @PostMapping("/approve-order")
-    public String postApproveOrder(Model model,@RequestParam("orderId") Integer orderId)
+    public String postApproveOrder(@RequestParam("orderId") Integer orderId)
     {
         ordersQueueService.changeStatus("Approved", orderId);
+        // need to add the logic here
+        orderRepo.save(new Order());
         return "redirect:/orderApproval";
     }
 

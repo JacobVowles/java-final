@@ -65,18 +65,26 @@
     <div class="flexItem2">
       <h1>Add Order</h1>
       <div class="data-entry">
-        <form action="/uc2AddOneOrder" method="POST">
-            <label for="customerId">Customer id:</label><br>
-            <input type="number" id="customerId" name="customerId" value="" required><br>
-            <label for="itemType">Item type:</label><br>
-            <input type="text" id="itemType" name="itemType" value="" required><br>
-            <label for="flavour">Flavour:</label><br>
-            <input type="text" id="flavour" name="flavour" value="" required><br>
-            <label for="note">Note:</label><br>
-            <input type="text" id="note" name="note" value=""><br>
-            <label for="status">Status:</label><br>
-            <input type="text" id="status" name="status" value="Incomplete" ><br><br>
-            <input type="submit" value="Submit">
+        <form action="/addOrder" method="post">
+          <label for="orderFName">First Name: </label>
+          <input type="text" id="orderFName" name="orderFName" required>
+          <br>
+          <label for="orderLName">Last Name: </label>
+          <input type="text" id="orderLName" name="orderLName" required>
+          <br>
+          <label for="date">Date:</label>
+          <input type="date" id="date" name="date" value="2023-01-01" min="2023-01-01" max="2040-12-31" required/>
+          <br>
+          <label for= "type"> Choose type of order</label>
+          <select name="type" id="type" required>
+            <option value="bulk">Bulk</option>
+            <option value="custom">Custom</option>
+          </select>
+          <br>
+          <Label for ="description">Description</Label>
+          <div>
+            <textarea name="description" id="description" rows="10" cols="30"></textarea></div>
+          <input type="submit" value="Register">
         </form>
         </div>
     </div>

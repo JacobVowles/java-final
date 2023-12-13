@@ -18,32 +18,33 @@ public class Order {
 
     //Columns for The Order table
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "new_order_id")
-    private Integer orderId;
-    
-    @Column(name = "customer_id")
-    private Integer customerId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name ="order_id")
+    Integer orderId;
 
-    @Column(name = "item_type")  //Change this to Products so it can get a array.
-    private String itemType;
+    @Column(name = "first_name")
+    String orderFName;
 
-    @Column(name = "flavour")
-    private String flavour;
-
-    @Column(name = "note")
-    private String note;
+    @Column(name ="last_name")
+    String orderLName;
 
     @Column(name = "status")
-    private String status;
+    String status;
 
-    //Constructor
-    public Order( Integer customerId, String itemType, String flavour, String note, String status) {
-        this.customerId = customerId;
-        this.itemType = itemType;
-        this.flavour = flavour;
-        this.note = note;
+    @Column(name= "date")
+    String date;
+
+    @Column(name= "type")
+    String type;
+    @Column(name="description")
+    String description;
+    public Order(String orderFName, String orderLName, String type, String date, String description, String status) {
+        this.orderFName = orderFName;
+        this.orderLName = orderLName;
+        this.type = type;
         this.status = status;
+        this.date = date;
+        this.description = description;
     }
 
 }

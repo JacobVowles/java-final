@@ -18,6 +18,7 @@ public class OrdersQueueService {
     }
     public void changeStatus(String status, Integer id) {ordersQueueRepo.changeStatus(status,id);}
 
-public void deleteByID(Integer id) {ordersQueueRepo.deleteById(id);}
+    public void deleteByID(Integer id) {ordersQueueRepo.deleteById(id);}
+
 
 }

@@ -63,19 +63,6 @@ public class BakerController {
         return "/uc2AllOrders";
     }
 
-    //Adds a new order to the list
-    @PostMapping("/uc2AddOneOrder")
-    public String postCreateCustomer(Model model, 
-    @RequestParam("customerId") Integer customerId,
-    @RequestParam("itemType") String itemType,
-    @RequestParam("flavour") String flavour,
-    @RequestParam("note") String note,
-    @RequestParam("status") String status)
-    {
-        bakerService.addOrder(customerId, itemType, flavour, note, status);
-        return "redirect:/uc2AddOrder";
-    } 
-
     //Changes the status of an order
     @GetMapping("/uc2MarkComplete")
     public String postCreateCustomer(Model model, @RequestParam("orderId") Integer orderId)

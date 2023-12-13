@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name ="Orders")
+@Table(name ="OrdersQueue")
 @NoArgsConstructor
 public class OrdersQueue {
 
@@ -29,13 +29,15 @@ public class OrdersQueue {
 
     @Column(name= "type")
     String type;
-
-    public OrdersQueue(String orderFName, String orderLName, String type, String date) {
+    @Column(name="description")
+    String description;
+    public OrdersQueue(String orderFName, String orderLName, String type, String date, String description) {
         this.orderFName = orderFName;
         this.orderLName = orderLName;
         this.type = type;
         this.status = "Pending";
         this.date = date;
+        this.description = description;
     }
 
 }
