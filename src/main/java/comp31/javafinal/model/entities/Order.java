@@ -28,7 +28,11 @@ public class Order {
     private Integer customerId;
 
     
-    //Change this to Products so it can get a array.
+    //When order queue is done attach the three tables 
+    /*@ManyToMany
+     * @JoinColumn(name="product_id")
+     * private Integer productId;
+     */
     @Column(name="product_id")
     private Integer productId;
 

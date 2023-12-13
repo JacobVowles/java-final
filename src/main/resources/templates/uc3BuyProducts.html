@@ -45,7 +45,7 @@
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#table"></use>
                         </svg>
-                        Purchase
+                        Menu
                     </a>
                 </li>
                 <li>
@@ -117,22 +117,23 @@
                 </tbody>
     </table>
     <br>
-    <table id="data">
-        <tr th:each="product : ${products}">
-          <td th:text="${product.productName}"></td>
-          <td>
-            <form th:action="@{/buy-product}" method="post">
-              <label for="qty">Quantity:</label>
-              <select id="qty" name="qty" required>
-                <option th:each="i : ${#numbers.sequence(0, product.Qty)}" th:value="${i}" th:text="${i}"></option>
-              </select>
-              <input type="hidden" name="productName" th:value="${product.productName}" />
-              <button type="submit">Buy Product</button>
-            </form>
-          </td>
-        </tr>
-      </table>
-      <br>
+    <h4>Products Below</h4>
+    <form th:action="@{/buy-products}" method="post">
+        <table id="data">
+            <tr th:each="product : ${products}">
+                <td th:text="${product.productName}"></td>
+                <td>
+                    <label for="qty">Quantity:</label>
+                    <select name="quantities" required>
+                        <option th:each="i : ${#numbers.sequence(0, product.Qty)}" th:value="${i}" th:text="${i}"></option>
+                    </select>
+                    <input type="hidden" name="productNames" th:value="${product.productName}" />
+                </td>
+            </tr>
+        </table>
+        <br>
+        <button type="submit">Buy Selected Products</button>
+    </form>
         </div>
     
 </body>

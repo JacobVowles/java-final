@@ -1,5 +1,8 @@
 package comp31.javafinal.controllers;
 import org.springframework.ui.Model;
+
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +14,8 @@ import comp31.javafinal.model.entities.Products;
 import comp31.javafinal.services.AccountService;
 import comp31.javafinal.services.CustomerService;
 import comp31.javafinal.model.repos.ProductsRepo;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 @RequestMapping
@@ -126,18 +131,31 @@ public class CustomerController {
     }
 
     // Handling the post request for buying products
-    @PostMapping("/buy-product")  //Change it so it can input multiple arrays? i guess then make it into a order
-    public String buyProduct(RedirectAttributes redirectAttributes, @RequestParam("productName") String productName,
-            @RequestParam("qty") int qty) {
+    @PostMapping("/buy-products")
+    public String buyProducts(RedirectAttributes redirectAttributes,
+    @RequestParam("productNames") List<String> productNames,
+    @RequestParam("quantities") List<Integer> quantities) {
+        if (productNames.size() != quantities.size()) {
+        redirectAttributes.addFlashAttribute("errorMessage", "Invalid request. Please try again.");
+        return "redirect:/BuyProducts";
+        }
+
+        // Process each selected product and quantity
+        for (int i = 0; i < productNames.size(); i++) {
+        String productName = productNames.get(i);
+        int qty = quantities.get(i);
+
         // Updating product quantity and providing feedback messages
         int updatedRows = productsRepo.updateProductQuantity(productName, qty);
-        if (updatedRows > 0) {
-            redirectAttributes.addFlashAttribute("successMessage", "Product purchased successfully");
-        } else {
-            redirectAttributes.addFlashAttribute("errorMessage", "Invalid product or quantity");
+        if (updatedRows <= 0) {
+        redirectAttributes.addFlashAttribute("errorMessage", "Failed to purchase products. Please try again.");
+        return "redirect:/BuyProducts";
         }
-        return "redirect:/uc3BuyProducts";
-    }
+}
+
+    redirectAttributes.addFlashAttribute("successMessage", "Products purchased successfully");
+    return "redirect:/BuyProducts";
+}
     @GetMapping("/addProducts")
     public String getAddProductsString(Model model)
     {
