@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,15 +25,10 @@ public class Order {
     @Column(name = "new_order_id")
     private Integer orderId;
     
-    @Column(name = "customer_id")
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Integer customerId;
 
-    
-    //When order queue is done attach the three tables 
-    /*@ManyToMany
-     * @JoinColumn(name="product_id")
-     * private Integer productId;
-     */
 
 
 
