@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/styles.css}">
+</head>
+
+<body>
+    <h1>Registered Users</h1>
+    <table>
+        <tr>
+            <th>EmployeeNumber</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Role</th>    
+        </tr>
+        <tr th:each="perm:${users}">
+            <td th:text="${perm.employeeNumber}"></td>
+            <td th:text="${perm.firstName}"></td>
+            <td th:text="${perm.lastName}"></td>
+            <td th:text="${perm.role}"></td>
+        </tr>
+    </table>
+
+    <h1>Change Roles</h1>
+    <button><a href="/changeRoles">Update Permissions</a></button>
+</body>
+</html>
