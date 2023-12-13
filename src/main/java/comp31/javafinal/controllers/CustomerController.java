@@ -118,20 +118,20 @@ public class CustomerController {
         return "redirect:/customer-accounts";
     }
 
-      @GetMapping("/uc3")
+      @GetMapping("/uc3") //MARCO DE MELO
      public String getUc3(Model model)
      {
          model.addAttribute("products", productsRepo.findAll());
         return "uc3";
      }
-    @GetMapping("/BuyProducts") //Change Name to Order Menu
+    @GetMapping("/BuyProducts") //MARCO DE MELO
     public String getBuy(Model model) {
         model.addAttribute("products", productsRepo.findAll());
         return "uc3BuyProducts";
     }
 
     // Handling the post request for buying products
-    @PostMapping("/buy-products")
+    @PostMapping("/buy-products") //MARCO DE MELO
     public String buyProducts(RedirectAttributes redirectAttributes,
     @RequestParam("productNames") List<String> productNames,
     @RequestParam("quantities") List<Integer> quantities) {
@@ -156,13 +156,17 @@ public class CustomerController {
     redirectAttributes.addFlashAttribute("successMessage", "Products purchased successfully");
     return "redirect:/BuyProducts";
 }
-    @GetMapping("/addProducts")
+    @GetMapping("/addProducts") //MARCO DE MELO
     public String getAddProductsString(Model model)
     {
         return"uc3AddProducts";
     }
-
-     @PostMapping("/addProduct")
+@GetMapping("/faq") //MARCO DE MELO
+    public String faq(Model model)
+    {
+        return"faq"; 
+    } 
+     @PostMapping("/addProduct") //MARCO DE MELO
     public String addProduct(Model model, @RequestParam("productName") String productName,
             @RequestParam("description") String description, @RequestParam("Qty") Integer Qty, @RequestParam("Price") Double price) {
         // Saving a new product to the repository
