@@ -66,4 +66,10 @@ public class PermController {
         model.addAttribute("users", permsService.findAll());
         return "perms-admin";
     }
+
+    @GetMapping("Employees")
+    public String employeeChange(Model model) {
+        model.addAttribute("users", permsService.findAll());
+        return "perms-admin";
+    }
 }
