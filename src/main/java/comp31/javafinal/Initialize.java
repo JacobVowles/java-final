@@ -108,9 +108,9 @@ public class Initialize implements CommandLineRunner {
         Employees emp3 = new Employees("Feebie", "Safin", "e1236", "password", "Sales Rep");
         employeeRepo.save(emp3);
         //Default Orders
-        Order order1 = new Order( 1 , "Please add balloons and happy birthday", "Incomplete" );
-        Order order2 = new Order( 2, "Orange icing and pumpkin drawings", "Incomplete" );
-        Order order3 = new Order( 3, "Hearts and flowers drawn on the cake please", "Complete" );
+        Order order1 = new Order( 14 , "Please add balloons and happy birthday", "Incomplete", cust1);
+        Order order2 = new Order( 15, "Orange icing and pumpkin drawings", "Incomplete", cust2);
+        Order order3 = new Order( 16, "Hearts and flowers drawn on the cake please", "Complete", cust3);
         //ORDERS ARE KIAN
         
         orderRepo.save(order1);

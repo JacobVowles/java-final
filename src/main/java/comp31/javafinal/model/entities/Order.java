@@ -26,6 +26,7 @@ public class Order {
     private Integer orderId;
     
     
+    //@ManyToOne
     @Column(name = "customer_id")
     private Integer customerId;
 
@@ -39,11 +40,13 @@ public class Order {
     private String status;
 
     //Constructor
-    public Order( Integer customerId,  String note, String status) {
+    public Order(Integer customerId,  String note, String status, Customers customer) {
         this.customerId = customerId;
-        
         this.note = note;
         this.status = status;
+        this.customer = customer;
     }
 
+    @ManyToOne
+    private Customers customer;
 }

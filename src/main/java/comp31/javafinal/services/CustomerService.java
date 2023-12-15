@@ -12,6 +12,10 @@ import comp31.javafinal.model.repos.CustomerRepo;
 public class CustomerService {
     CustomerRepo customerRepo;
     // ALL JACOB
+    public Customers findByCustomerId(Integer customerId) {
+        return customerRepo.findByCustomerId(customerId);
+    } //made for many to one - Ian
+
     public CustomerService(CustomerRepo customerRepo) {
         this.customerRepo = customerRepo;
     }
@@ -23,6 +27,7 @@ public class CustomerService {
     public List<Customers> findByEmail(String email) {
         return customerRepo.findByEmail(email);
     }
+
 
     public List<Customers> findByFirstNameLike(String firstName) {
         return customerRepo.findByFirstNameLike(firstName);
