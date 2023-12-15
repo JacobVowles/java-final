@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EmployeeRepo extends ListCrudRepository<Employees, Integer> {
-
+    // ALL JACOB
     List<Employees> findByEmployeeNumber(String employeeNumber);
 
     List<Employees> findByEmployeeNumberAndPassword(String employeeNumber, String password);

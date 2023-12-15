@@ -14,9 +14,10 @@ import lombok.NoArgsConstructor;
 @Table(name="Products")
 @NoArgsConstructor
 public class Products {
-
+    //ALL MARCO
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "product_id")
     Integer id;
     @Column(name ="product_name")
     String productName;
@@ -36,3 +37,4 @@ public class Products {
     }
    
 }
+//MARCO DE MELO

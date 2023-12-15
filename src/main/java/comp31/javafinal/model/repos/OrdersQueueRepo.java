@@ -26,3 +26,4 @@ public interface OrdersQueueRepo extends ListCrudRepository<OrdersQueue,Integer>
 
 
 }
+

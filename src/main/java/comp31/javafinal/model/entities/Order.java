@@ -18,9 +18,13 @@ public class Order {
 
     //Columns for The Order table
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="order_id")
-    Integer orderId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "new_order_id")
+    private Integer orderId;
+    
+
+    @Column(name = "customer_id")
+    private Integer customerId;
 
     @Column(name = "first_name")
     String orderFName;

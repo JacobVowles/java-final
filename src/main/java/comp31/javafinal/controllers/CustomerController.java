@@ -1,6 +1,8 @@
 package comp31.javafinal.controllers;
 import org.springframework.ui.Model;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,20 +11,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import comp31.javafinal.model.entities.Products;
+import comp31.javafinal.services.AccountService;
 import comp31.javafinal.services.CustomerService;
 import comp31.javafinal.model.repos.ProductsRepo;
+
+
 
 @Controller
 @RequestMapping
 public class CustomerController {
-
+    // MOST JACOB
     CustomerService customerService;
-    ProductsRepo productsRepo;
-
+    ProductsRepo productsRepo; //marco, all references to products are marco's
+    AccountService accountsService;
     
-    public CustomerController(CustomerService customerService, ProductsRepo productsRepo) {
+    public CustomerController(CustomerService customerService, ProductsRepo productsRepo, AccountService accountsService) {
         this.customerService = customerService;
         this.productsRepo = productsRepo;
+        this.accountsService = accountsService;
     }
 
     @GetMapping("/admin")
@@ -30,6 +36,11 @@ public class CustomerController {
         return "admin";
     }
 
+    @GetMapping("/customer-login")
+    public String customerLogin() {
+        return "customer-login";
+    }
+    
     @GetMapping("/customer-accounts")
     public String uc1(Model model) {
         // customerService.deleteByEmail("JaneDoe@gmail.com"); // error of cannot reliably process 'remove' call
@@ -37,7 +48,19 @@ public class CustomerController {
         return "customer-accounts";
     }
 
-
+    @PostMapping("find-customer")
+    public String findCustomer(@RequestParam String email, @RequestParam String password) {
+        email = email.trim();
+        password = password.trim();
+        Boolean customerFound = customerService.findByEmailAndPassword(email, password).size() > 0;
+        if (customerFound) {
+            return "redirect:/uc3";
+        }
+        else
+        {
+            return "redirect:/customer-login";
+        }
+    }
     //mapping for filter based on first name, last name, email
     @GetMapping("/uc1filter")
     public String filteredUc1(@RequestParam String filter, @RequestParam String input, Model model)
@@ -90,42 +113,59 @@ public class CustomerController {
     @PostMapping("/delete-customer")
     public String postDeleteCustomer(Model model, @RequestParam("customerId") Integer customerId)
     {
+        accountsService.deleteById(customerId);
         customerService.deleteById(customerId);
         return "redirect:/customer-accounts";
     }
 
-      @GetMapping("/uc3")
+      @GetMapping("/uc3") //MARCO DE MELO
      public String getUc3(Model model)
      {
-
+         model.addAttribute("products", productsRepo.findAll());
         return "uc3";
      }
-    @GetMapping("/uc3BuyProducts") //Change Name to Order Menu
+    @GetMapping("/BuyProducts") //MARCO DE MELO
     public String getBuy(Model model) {
         model.addAttribute("products", productsRepo.findAll());
         return "uc3BuyProducts";
     }
-
     // Handling the post request for buying products
-    @PostMapping("/buy-product")  //Change it so it can input multiple arrays? i guess then make it into a order
-    public String buyProduct(RedirectAttributes redirectAttributes, @RequestParam("productName") String productName,
-            @RequestParam("qty") int qty) {
+    @PostMapping("/buy-products") //MARCO DE MELO
+    public String buyProducts(RedirectAttributes redirectAttributes,
+    @RequestParam("productNames") List<String> productNames,
+    @RequestParam("quantities") List<Integer> quantities) {
+        if (productNames.size() != quantities.size()) {
+        redirectAttributes.addFlashAttribute("errorMessage", "Invalid request. Please try again.");
+        return "redirect:/BuyProducts";
+        }
+
+        // Process each selected product and quantity
+        for (int i = 0; i < productNames.size(); i++) {
+        String productName = productNames.get(i);
+        int qty = quantities.get(i);
+
         // Updating product quantity and providing feedback messages
         int updatedRows = productsRepo.updateProductQuantity(productName, qty);
-        if (updatedRows > 0) {
-            redirectAttributes.addFlashAttribute("successMessage", "Product purchased successfully");
-        } else {
-            redirectAttributes.addFlashAttribute("errorMessage", "Invalid product or quantity");
+        if (updatedRows <= 0) {
+        redirectAttributes.addFlashAttribute("errorMessage", "Failed to purchase products. Please try again.");
+        return "redirect:/BuyProducts";
         }
-        return "redirect:/uc3BuyProducts";
-    }
-    @GetMapping("/addProducts")
+}
+
+    redirectAttributes.addFlashAttribute("successMessage", "Products purchased successfully");
+    return "redirect:/BuyProducts";
+}
+    @GetMapping("/addProducts") //MARCO DE MELO
     public String getAddProductsString(Model model)
     {
         return"uc3AddProducts";
     }
-
-     @PostMapping("/addProduct")
+@GetMapping("/faq") //MARCO DE MELO
+    public String faq(Model model)
+    {
+        return"faq"; 
+    } 
+     @PostMapping("/addProduct") //MARCO DE MELO
     public String addProduct(Model model, @RequestParam("productName") String productName,
             @RequestParam("description") String description, @RequestParam("Qty") Integer Qty, @RequestParam("Price") Double price) {
         // Saving a new product to the repository

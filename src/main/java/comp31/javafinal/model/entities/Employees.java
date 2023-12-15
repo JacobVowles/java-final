@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "Employee")
 @NoArgsConstructor
 public class Employees {
-
+//ALL JACOB
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 @SequenceGenerator(name = "employeeIdGenerator", sequenceName = "employee_id_seq", initialValue = 1000)

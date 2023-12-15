@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "Accounts")
 @NoArgsConstructor
 public class Accounts {
-    
+    //ALL JACOB
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")

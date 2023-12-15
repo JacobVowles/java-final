@@ -11,26 +11,34 @@ import comp31.javafinal.model.repos.AccountsRepo;
 import comp31.javafinal.model.repos.CustomerRepo;
 import comp31.javafinal.model.repos.EmployeeRepo;
 import comp31.javafinal.model.repos.OrderRepo;
+
+import comp31.javafinal.util.EmailWriter;
+
 import comp31.javafinal.model.repos.ProductsRepo;
+
 
 import com.github.javafaker.Faker;
 
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.boot.CommandLineRunner;
  
-
+// 90% of this I Jacob (me) made
 @Component
 public class Initialize implements CommandLineRunner {
     CustomerRepo customerRepo;
     OrderRepo orderRepo;
-    ProductsRepo productsRepo;
+    ProductsRepo productsRepo; //marco
     EmployeeRepo employeeRepo;
     AccountsRepo accountRepo;
 
-    public Initialize(CustomerRepo customerRepository, OrderRepo orderRepo) {
+    public Initialize(CustomerRepo customerRepository, OrderRepo orderRepo, AccountsRepo accountRepo, EmployeeRepo employeeRepo, ProductsRepo productsRepo) {
         this.customerRepo = customerRepository;
         this.orderRepo = orderRepo;
+        this.accountRepo = accountRepo;
+        this.employeeRepo = employeeRepo;
+        this.productsRepo = productsRepo;
     }
 
     //Faker being used for easy default data
@@ -40,9 +48,6 @@ public class Initialize implements CommandLineRunner {
     String[] emailProviders = {"@gmail.com","@hotmail.com","@proton.me","@yahoo.com"};
     String[] roles = {"Admin", "Baker", "Sales Rep"};
     Random rand = new Random();
-
-    
-
     String passwordChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
 
     public void run(String... args) throws Exception {
@@ -86,15 +91,52 @@ public class Initialize implements CommandLineRunner {
             accountRepo.save(account);
         }
 
-        Order order1 = new Order( 1, "Cake", "Chocolate", "Please add balloons and happy birthday", "Incomplete" );
-        Order order2 = new Order( 2, "Cake", "Vanilla", "Orange icing and pumpkin drawings", "Incomplete" );
-        Order order3 = new Order( 3, "Cake", "Red Velvet", "Hearts and flowers drawn on the cake please", "Complete" );
+        
+
+        //Default Customers
+        Customers cust1 = new Customers("Freddy", "Fish", "1234567890", "FreddyFish@proton.me","123");
+        customerRepo.save(cust1);
+        Customers cust2 = new Customers("Casey", "Saber", "0987654321", "CaseySaber@hotmail.com","123");
+        customerRepo.save(cust2);
+        Customers cust3 = new Customers("Jenny", "Said", "1234567890", "JennySaid@gmail.com","123");
+        customerRepo.save(cust3);
+        //Default Employees
+        Employees emp1 = new Employees("T", "J", "e1234", "password", "Admin");
+        employeeRepo.save(emp1);
+        Employees emp2 = new Employees("Jamie", "Smith", "e1235", "password", "Baker");
+        employeeRepo.save(emp2);
+        Employees emp3 = new Employees("Feebie", "Safin", "e1236", "password", "Sales Rep");
+        employeeRepo.save(emp3);
+        //Default Orders
+        Order order1 = new Order( 1 , "Please add balloons and happy birthday", "Incomplete" );
+        Order order2 = new Order( 2, "Orange icing and pumpkin drawings", "Incomplete" );
+        Order order3 = new Order( 3, "Hearts and flowers drawn on the cake please", "Complete" );
+        //ORDERS ARE KIAN
+        
         orderRepo.save(order1);
+        //MARCO DE MELO
         productsRepo.save(new Products("Baguette", "Made from the french", 7, 3.50));
         productsRepo.save(new Products("French Toast", "French Toast in the Morning", 2, 4.00));
         productsRepo.save(new Products("White Bread", "Plain", 4, 0.10));
+        productsRepo.save(new Products("Cake","Really Fatening",9,5.50));
+        //MARCO DE MELO
         orderRepo.save(order2);
         orderRepo.save(order3);
 
+
+        //Default Admin to log in with
+        Employees employee = new Employees("ad","min", "e" + 123,"password","Admin");
+        employeeRepo.save(employee);
+
+
+        //EmailWriter being used to write to a file- testing, needed for product cancelation but didn't get their code
+        String path = "email.txt";
+        String content = "Your order has been successfully cancelled! If you didn't cancel it, please contact support";
+        EmailWriter emailWriter = new EmailWriter();
+        emailWriter.writeEmail(path,content);
+    }
+
+    public List<Accounts> findAllAccounts() {
+        return accountRepo.findAll();
     }
 }

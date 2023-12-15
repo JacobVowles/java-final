@@ -26,3 +26,4 @@ public interface ProductsRepo extends CrudRepository<Products, Integer> {
 // Method to update the quantity of an product in the database
 int updateProductQuantity(String productName, int qty);
 }
+//MARCO DE MELO

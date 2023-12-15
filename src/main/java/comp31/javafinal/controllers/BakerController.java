@@ -8,18 +8,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import comp31.javafinal.model.entities.Order;
 import comp31.javafinal.model.repos.OrderRepo;
+import comp31.javafinal.model.repos.ProductsRepo;
 import comp31.javafinal.services.BakerService;
 
 @Controller
 public class BakerController {
-    
+    // ALL KIAN
     BakerService bakerService;
     OrderRepo orderRepo;
-    
+    ProductsRepo productRepo;
+
     //Constructor
-    public BakerController(BakerService bakerService, OrderRepo orderRepo) {
+    public BakerController(BakerService bakerService, OrderRepo orderRepo, ProductsRepo productRepo) {
         this.bakerService = bakerService;
         this.orderRepo = orderRepo;
+        this.productRepo = productRepo;
     }
 
     //The index page
@@ -48,6 +51,11 @@ public class BakerController {
         model.addAttribute("order", order);
         return "uc2ViewDetails";
     }
+    @GetMapping("/product") //Change Name to Order Menu
+    public String getProducts(Model model) {
+        model.addAttribute("products", productRepo.findAll());
+        return "/product";
+    }
 
     //Displays all orders with the incomplete status
     @GetMapping("/uc2ShowIncomplete")
@@ -62,6 +70,17 @@ public class BakerController {
         model.addAttribute("allOrders", bakerService.findByStatus("Complete"));
         return "/uc2AllOrders";
     }
+
+    //Adds a new order to the list
+    @PostMapping("/uc2AddOneOrder")
+    public String postCreateCustomer(Model model, 
+    @RequestParam("customerId") Integer customerId,
+    @RequestParam("note") String note,
+    @RequestParam("status") String status)
+    {
+        bakerService.addOrder(customerId , note, status);
+        return "redirect:/uc2AddOrder";
+    } 
 
     //Changes the status of an order
     @GetMapping("/uc2MarkComplete")
