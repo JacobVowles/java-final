@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+//import java.util.List;
 
 @Controller
 public class OrdersQueueController {
@@ -35,39 +35,15 @@ public class OrdersQueueController {
         this.orderRepo = orderRepo;
     }
 
-
-
-    // Handling the root endpoint
-    @GetMapping("/")
-    public String getRoot() {
-        return "index";
-    }
-
-    // Handling the post request for navigation
-    @PostMapping("/goTo")
-    public String postFindBy(Model model, @RequestParam("Selected") String selected) {
-        // Handling different navigation options
-        if (selected.equals("orderApproval")) {
-
-            logger.info(" found : " + selected);
-            return "redirect:/" + selected;
-        } else if (selected.equals("orderForm")) {
-            logger.info(" found : " + selected);
-            return "redirect:/" + selected;
-        } else {
-            return "redirect:/";
-        }
-    }
-
     @GetMapping("/orderForm")
     public String getOrderForm() {
         return "orderForm";
     }
     // Handling the get request for displaying items in a buy view
-    @GetMapping("/orderApproval")
+    @GetMapping("/orderQueue")
     public String getBuy(Model model) {
         model.addAttribute("Orders", ordersQueueService.findAll());
-        return "orderApproval";
+        return "orderQueue";
     }
     @PostMapping("/addOrder")
     public String addItem(Model model, @RequestParam("orderFName") String fName,@RequestParam("orderLName") String lName,
@@ -82,7 +58,7 @@ public class OrdersQueueController {
     public String postDeleteOrder(Model model,@RequestParam("orderId") Integer orderId)
     {
         ordersQueueService.deleteByID(orderId);
-        return "redirect:/orderApproval";
+        return "redirect:/orderQueue";
     }
     @PostMapping("/approve-order")
     public String postApproveOrder(@RequestParam("orderId") Integer orderId)
@@ -90,7 +66,7 @@ public class OrdersQueueController {
         ordersQueueService.changeStatus("Approved", orderId);
         // need to add the logic here
         orderRepo.save(new Order());
-        return "redirect:/orderApproval";
+        return "redirect:/orderQueue";
     }
 
 
