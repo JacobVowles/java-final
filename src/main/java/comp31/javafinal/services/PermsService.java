@@ -6,7 +6,6 @@ import java.util.List;
 //import org.hibernate.mapping.List;
 import org.springframework.stereotype.Service;
 
-import comp31.javafinal.model.entities.Customers;
 //import comp31.javafinal.model.entities.Perms;
 import comp31.javafinal.model.entities.Employees;
 
@@ -32,7 +31,8 @@ public class PermsService {
     }
 
 
-
+    /* 
+    Using someone elses login instead
     public String login(Employees perms, String password)
     {
         String returnPage;
@@ -50,7 +50,7 @@ public class PermsService {
 
         return returnPage;
     }
-
+    */
     public Employees update(Employees perms)
     {
         return permsRepository.save(perms);
