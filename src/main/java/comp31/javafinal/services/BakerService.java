@@ -28,6 +28,6 @@ public class BakerService {
     }
 
     public void addOrder(Integer customerId, String note, String status) {
-        //orderRepo.save(new Order(customerId, note, status));
+        orderRepo.save(new Order());
     }
 }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-//import java.util.List;
+import java.util.List;
 
 @Controller
 public class OrdersQueueController {
@@ -46,7 +46,7 @@ public class OrdersQueueController {
         return "orderQueue";
     }
     @PostMapping("/addOrder")
-    public String addItem(Model model, @RequestParam("orderFName") String fName,@RequestParam("orderLName") String lName,
+    public String addItem(@RequestParam("orderFName") String fName,@RequestParam("orderLName") String lName,
                           @RequestParam("date") String date, @RequestParam("type") String type, @RequestParam("description") String description) {
         // Saving a new order to the repository
         ordersQueueRepo.save(new OrdersQueue(fName, lName, type, date, description));
@@ -64,9 +64,14 @@ public class OrdersQueueController {
     public String postApproveOrder(@RequestParam("orderId") Integer orderId)
     {
         ordersQueueService.changeStatus("Approved", orderId);
-        // need to add the logic here
-        orderRepo.save(new Order());
-        return "redirect:/orderQueue";
+        String fName = ordersQueueService.findFNamebyID(orderId);
+        String lName = ordersQueueService.findLNamebyID(orderId);
+        String status = ordersQueueService.findStatusByID(orderId);
+        String date = ordersQueueService.findDateByID(orderId);
+        String description = ordersQueueService.findDescriptionByID(orderId);
+        String type = ordersQueueService.findTypeByID(orderId);
+        orderRepo.save(new Order(fName, lName,status,date,description, type));
+        return "redirect:/orderApproval";
     }
 
 

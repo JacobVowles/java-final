@@ -23,7 +23,17 @@ public interface OrdersQueueRepo extends ListCrudRepository<OrdersQueue,Integer>
     void changeStatus(String status, int id);
 
     void deleteById(Integer id);
-
-
+    @Query("select orderFName from OrdersQueue where orderId=?1")
+    String findOrderFNameById(int id);
+    @Query("select orderLName from OrdersQueue where orderId=?1")
+    String findOrderLNameById(int id);
+    @Query("select status from OrdersQueue where orderId=?1")
+    String findStatusById(int id);
+    @Query("select date from OrdersQueue where orderId=?1")
+    String findDateById(int id);
+    @Query("select description from OrdersQueue where orderId=?1")
+    String findDescriptionById(int id);
+    @Query("select type from OrdersQueue where orderId=?1")
+    String findtypeById(int id);
 }
 

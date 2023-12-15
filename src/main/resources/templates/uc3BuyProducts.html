@@ -121,7 +121,7 @@
                 <td th:text="${product.productName}"></td>
                 <td>
                     <label for="qty">Quantity:</label>
-                    <select name="quantities" required>
+                    <select  id="qty" name="quantities" required>
                         <option th:each="i : ${#numbers.sequence(0, product.Qty)}" th:value="${i}" th:text="${i}"></option>
                     </select>
                     <input type="hidden" name="productNames" th:value="${product.productName}" />

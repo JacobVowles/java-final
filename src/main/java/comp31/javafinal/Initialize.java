@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import comp31.javafinal.model.entities.Accounts;
 import comp31.javafinal.model.entities.Customers;
 import comp31.javafinal.model.entities.Employees;
-//import comp31.javafinal.model.entities.Order;
+import comp31.javafinal.model.entities.Order;
 import comp31.javafinal.model.entities.Products;
 import comp31.javafinal.model.repos.AccountsRepo;
 import comp31.javafinal.model.repos.CustomerRepo;
@@ -108,9 +108,9 @@ public class Initialize implements CommandLineRunner {
         Employees emp3 = new Employees("Feebie", "Safin", "e1236", "password", "Sales Rep");
         employeeRepo.save(emp3);
         //Default Orders
-        //Order order1 = new Order( 1 , "Please add balloons and happy birthday", "Incomplete" );
-        //Order order2 = new Order( 2, "Orange icing and pumpkin drawings", "Incomplete" );
-        //Order order3 = new Order( 3, "Hearts and flowers drawn on the cake please", "Complete" );
+        Order order1 = new Order();
+        Order order2 = new Order();
+        Order order3 = new Order();
         //ORDERS ARE KIAN
         
         //orderRepo.save(order1);
@@ -123,7 +123,7 @@ public class Initialize implements CommandLineRunner {
         productsRepo.save(new Products("White Bread", "Plain", 4, 0.10));
         productsRepo.save(new Products("Cake","Really Fatening",9,5.50));
         //MARCO DE MELO
-        
+
 
         //Default Admin to log in with
         Employees employee = new Employees("ad","min", "e" + 123,"password","Admin");
