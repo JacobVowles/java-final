@@ -52,7 +52,7 @@ public class CustomerController {
         password = password.trim();
         Boolean customerFound = customerService.findByEmailAndPassword(email, password).size() > 0;
         if (customerFound) {
-            customerService.setCurrentUser(customerService.findCustomerIDByEmail(email));
+            customerService.setCurrentUser( customerService.findCustomerByEmailAndPassword(email, password));
             return "redirect:/uc3";
 
         }

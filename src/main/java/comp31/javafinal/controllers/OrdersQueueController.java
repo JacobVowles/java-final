@@ -4,8 +4,10 @@ package comp31.javafinal.controllers;
 
 import comp31.javafinal.model.entities.Order;
 import comp31.javafinal.model.entities.OrdersQueue;
+import comp31.javafinal.model.repos.CustomerRepo;
 import comp31.javafinal.model.repos.OrderRepo;
 import comp31.javafinal.model.repos.OrdersQueueRepo;
+import comp31.javafinal.services.CustomerService;
 import comp31.javafinal.services.OrdersQueueService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,15 +26,17 @@ public class OrdersQueueController {
     OrdersQueueService ordersQueueService;
     OrdersQueueRepo ordersQueueRepo;
     OrderRepo orderRepo;
+    CustomerService customerService;
     // Logger for logging messages
     Logger logger = LoggerFactory.getLogger(OrdersQueueController.class);
 
 
-    public OrdersQueueController(OrdersQueueService ordersQueueService, OrdersQueueRepo ordersQueueRepo, OrderRepo orderRepo) {
+    public OrdersQueueController(OrdersQueueService ordersQueueService, OrdersQueueRepo ordersQueueRepo, OrderRepo orderRepo, CustomerService customerService) {
 
         this.ordersQueueService = ordersQueueService;
         this.ordersQueueRepo = ordersQueueRepo;
         this.orderRepo = orderRepo;
+        this.customerService = customerService;
     }
 
     @GetMapping("/orderForm")
@@ -42,7 +46,7 @@ public class OrdersQueueController {
     // Handling the get request for displaying items in a buy view
     @GetMapping("/orderQueue")
     public String getBuy(Model model) {
-        model.addAttribute("Orders", ordersQueueService.findAll());
+
         logger.info(String.valueOf(model.asMap().keySet()));
         return "orderQueue";
     }
@@ -70,7 +74,7 @@ public class OrdersQueueController {
         String date = ordersQueueService.findDateByID(orderId);
         String description = ordersQueueService.findDescriptionByID(orderId);
         String type = ordersQueueService.findTypeByID(orderId);
-        orderRepo.save(new Order(fName, lName,status,date,description, type));
+        orderRepo.save(new Order(fName, lName,status,date,description, type, customerService.getCurrentUser()));
         return "redirect:/orderApproval";
     }
 

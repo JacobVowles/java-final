@@ -96,17 +96,29 @@ public class Initialize implements CommandLineRunner {
         //Default Customers
         Customers cust1 = new Customers("Freddy", "Fish", "1234567890", "FreddyFish@proton.me","123");
         customerRepo.save(cust1);
+         Accounts custAccount1 = new Accounts("Customer", null, cust1);
+        accountRepo.save(custAccount1);
         Customers cust2 = new Customers("Casey", "Saber", "0987654321", "CaseySaber@hotmail.com","123");
         customerRepo.save(cust2);
+        Accounts custAccount2 = new Accounts("Customer", null, cust2);
+        accountRepo.save(custAccount2);
         Customers cust3 = new Customers("Jenny", "Said", "1234567890", "JennySaid@gmail.com","123");
         customerRepo.save(cust3);
+        Accounts custAccount3 = new Accounts("Customer", null, cust3);
+        accountRepo.save(custAccount3);
         //Default Employees
         Employees emp1 = new Employees("T", "J", "e1234", "password", "Admin");
         employeeRepo.save(emp1);
+        Accounts empAccount1 = new Accounts("Employee", emp1, null);
+        accountRepo.save(empAccount1);
         Employees emp2 = new Employees("Jamie", "Smith", "e1235", "password", "Baker");
         employeeRepo.save(emp2);
+        Accounts empAccount2 = new Accounts("Employee", emp2, null);
+        accountRepo.save(empAccount2);
         Employees emp3 = new Employees("Feebie", "Safin", "e1236", "password", "Sales Rep");
         employeeRepo.save(emp3);
+        Accounts empAccount3 = new Accounts("Employee", emp3, null);
+        accountRepo.save(empAccount3);
         //Default Orders
         Order order1 = new Order();
         Order order2 = new Order();
@@ -123,6 +135,8 @@ public class Initialize implements CommandLineRunner {
         productsRepo.save(new Products("White Bread", "Plain", 4, 0.10));
         productsRepo.save(new Products("Cake","Really Fatening",9,5.50));
         //MARCO DE MELO
+        orderRepo.save(order2);
+        orderRepo.save(order3);
 
 
         //Default Admin to log in with

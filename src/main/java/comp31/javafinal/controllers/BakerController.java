@@ -10,19 +10,22 @@ import comp31.javafinal.model.entities.Order;
 import comp31.javafinal.model.repos.OrderRepo;
 import comp31.javafinal.model.repos.ProductsRepo;
 import comp31.javafinal.services.BakerService;
+import comp31.javafinal.services.CustomerService;
 
 @Controller
 public class BakerController {
     // ALL KIAN
     BakerService bakerService;
+    CustomerService customerService;
     OrderRepo orderRepo;
     ProductsRepo productRepo;
-
+    
     //Constructor
-    public BakerController(BakerService bakerService, OrderRepo orderRepo, ProductsRepo productRepo) {
+    public BakerController(BakerService bakerService, OrderRepo orderRepo, ProductsRepo productRepo, CustomerService customerService) {
         this.bakerService = bakerService;
         this.orderRepo = orderRepo;
         this.productRepo = productRepo;
+        this.customerService = customerService;
     }
 
     //The index page

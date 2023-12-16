@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.slf4j.Logger;
 import comp31.javafinal.services.PermsService;
+//import org.springframework.web.bind.annotation.RequestBody;
+
 
 // Ian Haworth
 // Controller for updating user permissions
@@ -34,9 +36,11 @@ public class PermController {
         logger.info("---- At root.");
         Employees perms = new Employees();
         model.addAttribute("perms", perms);
-        return "perms-login";
+        model.addAttribute("users", permsService.findAll());
+        return "perms-admin";
     }
     
+    /* 
     @PostMapping("/login")
     public String getForm(Employees perms, @RequestParam String password, Model model) {
         Employees currentUser = permsService.findByEmployeeNumber(perms.getEmployeeNumber());
@@ -48,6 +52,7 @@ public class PermController {
         model.addAttribute("users", permsService.findAll());
         return returnPage;
     }
+    */
 
     @GetMapping("changeRoles")
     public String changeRoles() {
@@ -72,4 +77,18 @@ public class PermController {
         model.addAttribute("users", permsService.findAll());
         return "perms-admin";
     }
+
+    @GetMapping("addEmployee")
+    public String addEmployee() {
+        return "perms-add-employee";
+    }
+
+    @PostMapping("addNewEmployee")
+    public String addNewEmployee(Model model, @RequestParam String employeeNumber, @RequestParam String password, @RequestParam String firstName, 
+    @RequestParam String lastName, @RequestParam String role) {
+        permsService.createNewEmployee(employeeNumber, password, firstName, lastName, role);
+        model.addAttribute("users", permsService.findAll());
+        return "perms-admin";
+    }
+    
 }

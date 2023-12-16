@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,13 +44,16 @@ public class Order {
     String type;
     @Column(name="description")
     String description;
-    public Order(String orderFName, String orderLName, String status, String date, String description,String type,Int) {
+    public Order(String orderFName, String orderLName, String status, String date, String description,String type,Customers customer) {
         this.orderFName = orderFName;
         this.orderLName = orderLName;
         this.type = type;
         this.status = status;
         this.date = date;
         this.description = description;
+        this.customer = customer;
     }
 
+    @ManyToOne
+    private Customers customer;
 }

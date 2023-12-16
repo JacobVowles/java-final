@@ -11,6 +11,7 @@ import comp31.javafinal.model.entities.Employees;
 
 import comp31.javafinal.model.repos.PermsRepository;
 
+//Ian 
 @Service
 public class PermsService {
     PermsRepository permsRepository;
@@ -30,7 +31,8 @@ public class PermsService {
     }
 
 
-
+    /* 
+    Using someone elses login instead
     public String login(Employees perms, String password)
     {
         String returnPage;
@@ -48,9 +50,13 @@ public class PermsService {
 
         return returnPage;
     }
-
+    */
     public Employees update(Employees perms)
     {
         return permsRepository.save(perms);
+    }
+
+    public void createNewEmployee(String employeeNumber, String password, String firstName, String lastName, String role) {
+        permsRepository.save(new Employees(firstName,lastName, employeeNumber, password, role));
     }
 }

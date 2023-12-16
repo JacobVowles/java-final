@@ -11,13 +11,18 @@ import comp31.javafinal.model.repos.CustomerRepo;
 @Service
 public class CustomerService {
     CustomerRepo customerRepo;
-    private Integer currentUser;
+    // ALL JACOB
+    public Customers findByCustomerId(Integer customerId) {
+        return customerRepo.findByCustomerId(customerId);
+    } //made for many to one - Ian
 
-    public void setCurrentUser(Integer currentUser) {
+    private Customers currentUser;
+
+    public void setCurrentUser(Customers currentUser) {
         this.currentUser = currentUser;
     }
 
-    public Integer getCurrentUser() {
+    public Customers getCurrentUser() {
         return currentUser;
     }
 
@@ -32,6 +37,7 @@ public class CustomerService {
     public List<Customers> findByEmail(String email) {
         return customerRepo.findByEmail(email);
     }
+
 
     public List<Customers> findByFirstNameLike(String firstName) {
         return customerRepo.findByFirstNameLike(firstName);
@@ -51,11 +57,10 @@ public class CustomerService {
     public List<Customers> findByFirstNameAndLastName(String firstName, String lastName) {
         return customerRepo.findByFirstNameAndLastName(firstName, lastName);
     }
-
+    public Customers findCustomerByEmailAndPassword(String email, String password){return customerRepo.findCustomerByEmailAndPassword(email,password);}
     public void createNewCustomer(String firstName, String lastName, String phoneNumber, String email, String password) {
         customerRepo.save(new Customers(firstName, lastName, phoneNumber, email,password));
     }
-    public Integer findCustomerIDByEmail(String email){return customerRepo.findCustomerIDbyEmail(email);}
     public void deleteById(Integer id) {
         customerRepo.deleteById(id);
     }
