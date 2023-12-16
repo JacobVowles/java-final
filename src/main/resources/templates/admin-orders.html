@@ -7,37 +7,61 @@
       rel="stylesheet"
       th:href="@{/css/styles.css}"
       href="../static/css/styles.css"
-    />
+    </link>
     <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
   />
-    <title>Use Case #2</title>
+    <title>Use Case #1</title>
   </head>
   <body>
     <div class="flex-container">
     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; height: 100vh;">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4">Baker Home Page</span>
+        <span class="fs-4">Admin Home Page</span>
       </a>
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="/uc2" class="nav-link text-white" aria-current="page">
-            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+          <a href="/admin" class="nav-link text-white" aria-current="page">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#admin"></use></svg>
             Home
           </a>
         </li>
         <li>
-          <a href="/uc2AllOrders" class="nav-link active">
+          <a href="/customer-accounts" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+            Customers
+          </a>
+        </li>
+        <li>
+          <a href="/uc2AllOrders" class="nav-link text-white">
             <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-            View Orders
+            Orders
+          </a>
+        </li>
+        <li>
+          <a href="/product" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+            Products
+          </a>
+        </li>
+        <li>
+          <a href="/Employees" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#employee"></use></svg>
+            Employees
+          </a>
+        </li>
+        <li>
+          <a href="/OrdersAdmin" class="nav-link active">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#OrdersAdmin"></use></svg>
+            Admin Orders
           </a>
         </li>
         <li>
           <a href="/" class="nav-link text-white">
-            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
             Log Out
           </a>
         </li>
@@ -46,7 +70,7 @@
       <div class="dropdown ">
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="" alt="" width="32" height="32" class="rounded-circle me-2">
-          <strong>Baker</strong>
+          <strong>Admin</strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
           <li><a class="dropdown-item" href="#">Settings</a></li>
@@ -57,7 +81,7 @@
       </div>
     </div>
     <div class="flexItem2">
-      <h1>Baker Views all Orders</h1>
+      <h1>Admin Views all Orders</h1>
 
       <table>
         <thead>
@@ -70,38 +94,48 @@
           <th>First Name</td>
           <th>Last Name</td>
           <th>Customer ID</td>
+          <th>Delete Order</td>
         </thead>
      <tbody>
       <tr>
         <tr th:each="order:${allOrders}">
-          <td><form action="/uc2ViewDetails">
+          <td><form action="/uc2ViewDetailsAdmin">
             <input type="hidden" name="orderId" th:value="${order.orderId}">
             <button>Details</button>
         </form>
         </td>   
         
           <td th:text="${order.orderId}"></td>
-          <td th:text="${order.type}"></td>
+          <td th:text="${order.note}"></td>
+          
             <td th:text="${order.status}"></td>
             <td>
-              <form action="/uc2MarkComplete">
+              <form action="/uc2MarkCompleteAdmin">
                 <input type="hidden" name="orderId" th:value="${order.orderId}">
                 <button>Change Status</button>
             </form>
             </td>
-
+            <td th:text="${order.customer.firstName}"></td>
+            <td th:text="${order.customer.lastName}"></td>
+            <td th:text="${order.customer.customerId}"></td>
+            <td>
+              <form th:action="@{/delete-order}" method="POST">
+                <input type="hidden" name="orderId" th:value="${order.orderId}" class="hidden-input"/>
+                <button class="delete-buttons">X</button>
+              </form>            
+            </td>
         </tr>
     </tr>
   </tbody>
 </table>
 <div>
-<form action="/uc2ShowIncomplete">
+<form action="/uc2ShowIncompleteAdmin">
   <button>Show Incomplete Orders</button>
 </form>
-<form action="/uc2ShowComplete">
+<form action="/uc2ShowCompleteAdmin">
   <button>Show Complete Orders</button>
 </form>
-<form action="/uc2AllOrders">
+<form action="/uc2AllOrdersAdmin">
   <button>Show All Orders</button>
 </form>
     </div>

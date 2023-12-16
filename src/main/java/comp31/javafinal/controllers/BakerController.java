@@ -79,4 +79,61 @@ public class BakerController {
         orderRepo.save(order);
         return "redirect:/uc2AllOrders";
     } 
+
+    //mapping for deleting a customer
+    @PostMapping("/delete-order")
+    public String postDeleteOrder(Model model, @RequestParam("orderId") Integer orderId)
+    {
+        bakerService.deleteById(orderId);
+        return "redirect:/OrdersAdmin";
+    }
+
+    //The page for viewing orders
+    @GetMapping("/OrdersAdmin")
+    public String adminOrders(Model model) {
+        model.addAttribute("allOrders", bakerService.findAll());
+        return "admin-orders";
+    }
+
+    //Displays all orders with the incomplete status
+    @GetMapping("/uc2ShowIncompleteAdmin")
+    public String incompleteOrdersAdmin(Model model) {
+        model.addAttribute("allOrders", bakerService.findByStatus("Incomplete"));
+        return "/admin-orders";
+    }
+
+    //Displays all orders with the complete status
+    @GetMapping("/uc2ShowCompleteAdmin")
+    public String completeOrdersAdmin(Model model) {
+        model.addAttribute("allOrders", bakerService.findByStatus("Complete"));
+        return "/admin-orders";
+    }
+
+    //The page for viewing orders
+    @GetMapping("/uc2AllOrdersAdmin")
+    public String allOrdersAdmin(Model model) {
+        model.addAttribute("allOrders", bakerService.findAll());
+        return "admin-orders";
+    }
+
+    //Changes the status of an order
+    @GetMapping("/uc2MarkCompleteAdmin")
+    public String postCreateCustomerAdmin(Model model, @RequestParam("orderId") Integer orderId)
+    {
+        Order order = bakerService.findByOrderId(orderId);
+        if(order.getStatus() == "Incomplete")
+            order.setStatus("Complete");
+        else
+            order.setStatus("Incomplete");
+        orderRepo.save(order);
+        return "redirect:/OrdersAdmin";
+    } 
+
+    //Displays the selected order's additional details
+    @GetMapping("/uc2ViewDetailsAdmin")
+    public String ViewDetailsAdmin(Model model, @RequestParam Integer orderId) {
+        Order order = bakerService.findByOrderId(orderId);
+        model.addAttribute("order", order);
+        return "admin-orders-details";
+    }
 }

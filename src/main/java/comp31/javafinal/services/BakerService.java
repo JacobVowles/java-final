@@ -26,5 +26,9 @@ public class BakerService {
     public Order findByOrderId(Integer id) {
         return orderRepo.findByOrderId(id);
     }
+
+    public void deleteById(Integer id) {
+        orderRepo.deleteById(id);
     }
 
+}
