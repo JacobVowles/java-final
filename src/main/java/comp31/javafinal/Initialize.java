@@ -121,9 +121,9 @@ public class Initialize implements CommandLineRunner {
         accountRepo.save(empAccount3);
 
         //Default Orders
-        Order order1 = new Order(cust1.getFirstName(), cust1.getLastName(), "Incomplete", "2024/4/3", "Custom", "Orange icing with pumpkin drawings", cust1);
-        Order order2 = new Order(cust2.getFirstName(), cust2.getLastName(), "Incomplete", "2024/3/8", "Custom", "Pink with hearts", cust2);
-        Order order3 = new Order(cust3.getFirstName(), cust3.getLastName(), "Complete", "2023/9/10", "Custom", "Green cake please", cust3);
+        Order order1 = new Order(cust1.getFirstName(), cust1.getLastName(), "Incomplete", "2024/4/3","Orange icing with pumpkin drawings","Custom", cust1);
+        Order order2 = new Order(cust2.getFirstName(), cust2.getLastName(), "Incomplete", "2024/3/8",  "Pink with hearts","Custom", cust2);
+        Order order3 = new Order(cust3.getFirstName(), cust3.getLastName(), "Complete", "2023/9/10", "Green cake please","Custom", cust3);
         //ORDERS ARE KIAN
 
         orderRepo.save(order1);
