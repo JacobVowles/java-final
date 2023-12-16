@@ -60,14 +60,14 @@
       <h1>View Order Details</h1>
       <table>
         <thead>
-          <th>Item Type</th>
-          <th>Flavour</th>
-          <th>Note</th>
+          <th>Order Type</th>
+          <th>Details</th>
+          <th>Status</th>
         </thead>
      <tbody>
       <tr>
-          <td th:text="${order.orderId}"></td>
-          <td th:text="${order.note}"></td>
+          <td th:text="${order.type}"></td>
+          <td th:text="${order.description}"></td>
             <td th:text="${order.status}"></td>
         </tr>
     </tr>

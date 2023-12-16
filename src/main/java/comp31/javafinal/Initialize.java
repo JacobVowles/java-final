@@ -119,15 +119,16 @@ public class Initialize implements CommandLineRunner {
         employeeRepo.save(emp3);
         Accounts empAccount3 = new Accounts("Employee", emp3, null);
         accountRepo.save(empAccount3);
+
         //Default Orders
-        Order order1 = new Order();
-        Order order2 = new Order();
-        Order order3 = new Order();
+        Order order1 = new Order(cust1.getFirstName(), cust1.getLastName(), "Incomplete", "2024/4/3", "Custom", "Orange icing with pumpkin drawings", cust1);
+        Order order2 = new Order(cust2.getFirstName(), cust2.getLastName(), "Incomplete", "2024/3/8", "Custom", "Pink with hearts", cust2);
+        Order order3 = new Order(cust3.getFirstName(), cust3.getLastName(), "Complete", "2023/9/10", "Custom", "Green cake please", cust3);
         //ORDERS ARE KIAN
-        
-        //orderRepo.save(order1);
-        //orderRepo.save(order2);
-        //orderRepo.save(order3);
+
+        orderRepo.save(order1);
+        orderRepo.save(order2);
+        orderRepo.save(order3);
 
         //MARCO DE MELO
         productsRepo.save(new Products("Baguette", "Made from the french", 7, 3.50));
@@ -135,8 +136,6 @@ public class Initialize implements CommandLineRunner {
         productsRepo.save(new Products("White Bread", "Plain", 4, 0.10));
         productsRepo.save(new Products("Cake","Really Fatening",9,5.50));
         //MARCO DE MELO
-        orderRepo.save(order2);
-        orderRepo.save(order3);
 
 
         //Default Admin to log in with

@@ -26,6 +26,8 @@ public class CustomerService {
         return currentUser;
     }
 
+
+
     public CustomerService(CustomerRepo customerRepo) {
         this.customerRepo = customerRepo;
     }
@@ -37,7 +39,6 @@ public class CustomerService {
     public List<Customers> findByEmail(String email) {
         return customerRepo.findByEmail(email);
     }
-
 
     public List<Customers> findByFirstNameLike(String firstName) {
         return customerRepo.findByFirstNameLike(firstName);

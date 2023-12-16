@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import comp31.javafinal.model.entities.Customers;
-
 import comp31.javafinal.model.entities.Order;
 import comp31.javafinal.model.repos.OrderRepo;
 

@@ -46,14 +46,14 @@ public class OrdersQueueController {
     // Handling the get request for displaying items in a buy view
     @GetMapping("/orderQueue")
     public String getBuy(Model model) {
-
+        model.addAttribute("Orders", ordersQueueService.findAll());
         logger.info(String.valueOf(model.asMap().keySet()));
         return "orderQueue";
     }
     @PostMapping("/addOrder")
     public String addItem(@RequestParam("orderFName") String fName,@RequestParam("orderLName") String lName,
                           @RequestParam("date") String date, @RequestParam("type") String type, @RequestParam("description") String description) {
-        
+        ordersQueueRepo.save(new OrdersQueue(fName, lName, type, date, description));
         return "orderForm";
     }
 
@@ -70,12 +70,13 @@ public class OrdersQueueController {
         ordersQueueService.changeStatus("Approved", orderId);
         String fName = ordersQueueService.findFNamebyID(orderId);
         String lName = ordersQueueService.findLNamebyID(orderId);
-        String status = ordersQueueService.findStatusByID(orderId);
+        String status = "Incomplete";
         String date = ordersQueueService.findDateByID(orderId);
         String description = ordersQueueService.findDescriptionByID(orderId);
         String type = ordersQueueService.findTypeByID(orderId);
         orderRepo.save(new Order(fName, lName,status,date,description, type, customerService.getCurrentUser()));
-        return "redirect:/orderApproval";
+        ordersQueueService.deleteByID(orderId);
+        return "redirect:/orderQueue";
     }
 
 

@@ -23,7 +23,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "new_order_id")
     private Integer orderId;
-    
+
 
     @Column(name = "customer_id")
     private Integer customerId;
@@ -52,6 +52,7 @@ public class Order {
         this.date = date;
         this.description = description;
         this.customer = customer;
+        this.customerId = customer.getCustomerId();
     }
 
     @ManyToOne
