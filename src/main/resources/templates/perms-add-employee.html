@@ -124,13 +124,13 @@
     <div class="flexItem2">
     <form action="/addNewEmployee" method="POST" th:object="${perms}">
         <label for="fname">Employee Number:</label><br>
-        <input type="text" id="fname" name="employeeNumber"><br>
+        <input type="text" id="fname" name="employeeNumber" required><br>
         <label for="pword">Password:</label><br>
-        <input type="password" id="pword" name="password"><br>
+        <input type="password" id="pword" name="password" required><br>
         <label for="lastName">First Name:</label><br>
-        <input type="text" id="lastName" name="firstName"><br>
+        <input type="text" id="lastName" name="firstName" required><br>
         <label for="lastName">Last Name:</label><br>
-        <input type="text" id="lastName" name="lastName"><br>
+        <input type="text" id="lastName" name="lastName" required><br>
 
         <label for="role">Role:</label><br>
         <select name="role" id="role">

@@ -30,27 +30,6 @@ public class PermsService {
         return permsRepository.findByEmployeeNumber(employeeNumber);
     }
 
-
-    /* 
-    Using someone elses login instead
-    public String login(Employees perms, String password)
-    {
-        String returnPage;
-
-        if (perms == null) {
-            returnPage = "perms-login";
-        } else if(password.equals(perms.getPassword())) {   
-            if ("Admin".equals(perms.getRole()))
-                returnPage = "perms-" + perms.getRole();
-            else
-                returnPage = "perms-other";                                   
-        }else {
-            returnPage = "perms-login"; 
-        }
-
-        return returnPage;
-    }
-    */
     public Employees update(Employees perms)
     {
         return permsRepository.save(perms);
