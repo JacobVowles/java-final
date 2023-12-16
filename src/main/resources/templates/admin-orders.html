@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!--ALL JACOB-->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -20,7 +19,7 @@
     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; height: 100vh;">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4">Customers</span>
+        <span class="fs-4">Admin Home Page</span>
       </a>
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
@@ -31,7 +30,7 @@
           </a>
         </li>
         <li>
-          <a href="/customer-accounts" class="nav-link active">
+          <a href="/customer-accounts" class="nav-link text-white">
             <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
             Customers
           </a>
@@ -55,7 +54,7 @@
           </a>
         </li>
         <li>
-          <a href="/OrdersAdmin" class="nav-link text-white">
+          <a href="/OrdersAdmin" class="nav-link active">
             <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#OrdersAdmin"></use></svg>
             Admin Orders
           </a>
@@ -82,49 +81,67 @@
       </div>
     </div>
     <div class="flexItem2">
-      <h1>Customer Accounts</h1>
-      <div class="table-container">
-      <table border="1">
-        <!--table borders not actually displaying???-->
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th colspan="2">Email</th>
-              
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="customer:${customers}">
-              <td th:text="${customer.firstName}"></td>
-              <td th:text="${customer.lastName}"></td>
-              <td th:text="${customer.email}"></td>
-              <td>
-                <form th:action="@{/delete-customer}" method="POST">
-                  <input type="hidden" name="customerId" th:value="${customer.customerId}" class="hidden-input"/>
-                  <button class="delete-buttons">X</button>
-                </form>            
-              </td>
-            </tr>
-          </tbody>
-      </table>
-      </div>
-      
-      <form action ="/uc1filter">
-        <label for="filter">Filter by:</label>
-        <select name="filter">
-          <option value="firstName">First Name</option>
-          <option value="lastName">Last Name</option>
-          <option value="email">Email</option>
-        </select>
-        <input type="text" name="input"></input>
-        <button>Filter</button>
-      </form>
-      <a href="/create-account"><button>Data Entry</button></a>
+      <h1>Admin Views all Orders</h1>
+
+      <table>
+        <thead>
+          
+          <th></th>
+          <th>Order Number</th>
+          <th>Order Type</th>
+          <th>Status</th>
+          <th> </th>
+          <th>First Name</td>
+          <th>Last Name</td>
+          <th>Customer ID</td>
+          <th>Delete Order</td>
+        </thead>
+     <tbody>
+      <tr>
+        <tr th:each="order:${allOrders}">
+          <td><form action="/uc2ViewDetailsAdmin">
+            <input type="hidden" name="orderId" th:value="${order.orderId}">
+            <button>Details</button>
+        </form>
+        </td>   
         
-     
+          <td th:text="${order.orderId}"></td>
+          <td th:text="${order.note}"></td>
+          
+            <td th:text="${order.status}"></td>
+            <td>
+              <form action="/uc2MarkCompleteAdmin">
+                <input type="hidden" name="orderId" th:value="${order.orderId}">
+                <button>Change Status</button>
+            </form>
+            </td>
+            <td th:text="${order.customer.firstName}"></td>
+            <td th:text="${order.customer.lastName}"></td>
+            <td th:text="${order.customer.customerId}"></td>
+            <td>
+              <form th:action="@{/delete-order}" method="POST">
+                <input type="hidden" name="orderId" th:value="${order.orderId}" class="hidden-input"/>
+                <button class="delete-buttons">X</button>
+              </form>            
+            </td>
+        </tr>
+    </tr>
+  </tbody>
+</table>
+<div>
+<form action="/uc2ShowIncompleteAdmin">
+  <button>Show Incomplete Orders</button>
+</form>
+<form action="/uc2ShowCompleteAdmin">
+  <button>Show Complete Orders</button>
+</form>
+<form action="/uc2AllOrdersAdmin">
+  <button>Show All Orders</button>
+</form>
     </div>
+  </div>
    
   </div>
   </body>
 </html>
+

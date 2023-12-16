@@ -32,4 +32,9 @@ public class BakerService {
     public void addOrder(Integer customerId, String note, String status, Customers customer) {
         orderRepo.save(new Order(customerId, note, status, customer));
     }
+
+    public void deleteById(Integer id) {
+        orderRepo.deleteById(id);
+    }
+
 }

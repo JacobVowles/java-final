@@ -15,4 +15,6 @@ public interface OrderRepo extends ListCrudRepository<Order, Integer> {
     
     //Custom method that finds an order by the order id
     Order findByOrderId(Integer id);
+
+    void deleteById(Integer id);
 }
