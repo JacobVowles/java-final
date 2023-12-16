@@ -4,10 +4,7 @@ import org.springframework.ui.Model;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import comp31.javafinal.model.entities.Products;
@@ -19,6 +16,7 @@ import comp31.javafinal.model.repos.ProductsRepo;
 
 @Controller
 @RequestMapping
+@SessionAttributes("current-customerID")
 public class CustomerController {
     // MOST JACOB
     CustomerService customerService;
@@ -49,12 +47,14 @@ public class CustomerController {
     }
 
     @PostMapping("find-customer")
-    public String findCustomer(@RequestParam String email, @RequestParam String password) {
+    public String findCustomer(Model model,@RequestParam String email, @RequestParam String password) {
         email = email.trim();
         password = password.trim();
         Boolean customerFound = customerService.findByEmailAndPassword(email, password).size() > 0;
         if (customerFound) {
+            customerService.setCurrentUser( customerService.findCustomerByEmailAndPassword(email, password));
             return "redirect:/uc3";
+
         }
         else
         {

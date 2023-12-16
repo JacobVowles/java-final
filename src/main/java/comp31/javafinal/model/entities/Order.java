@@ -17,33 +17,42 @@ import lombok.NoArgsConstructor;
 @Table(name = "bakery_orders")
 @NoArgsConstructor
 public class Order {
-    // ALL KIAN
+
     //Columns for The Order table
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "new_order_id")
     private Integer orderId;
-    
-    
-    //@ManyToOne
+
+
     @Column(name = "customer_id")
     private Integer customerId;
 
+    @Column(name = "first_name")
+    String orderFName;
 
-
-
-    @Column(name = "note")
-    private String note;
+    @Column(name ="last_name")
+    String orderLName;
 
     @Column(name = "status")
-    private String status;
+    String status;
 
-    //Constructor
-    public Order(Integer customerId,  String note, String status, Customers customer) {
-        this.customerId = customerId;
-        this.note = note;
+    @Column(name= "date")
+    String date;
+
+    @Column(name= "type")
+    String type;
+    @Column(name="description")
+    String description;
+    public Order(String orderFName, String orderLName, String status, String date, String description,String type,Customers customer) {
+        this.orderFName = orderFName;
+        this.orderLName = orderLName;
+        this.type = type;
         this.status = status;
+        this.date = date;
+        this.description = description;
         this.customer = customer;
+        this.customerId = customer.getCustomerId();
     }
 
     @ManyToOne

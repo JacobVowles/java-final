@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import comp31.javafinal.model.entities.Customers;
 import comp31.javafinal.model.entities.Order;
 import comp31.javafinal.model.repos.OrderRepo;
 import comp31.javafinal.model.repos.ProductsRepo;
@@ -42,12 +41,6 @@ public class BakerController {
         return "uc2AllOrders";
     }
 
-    //The page for adding orders
-    @GetMapping("/uc2AddOrder")
-    public String AddOrder() {
-        return "uc2AddOrder";
-    }
-
     //Displays the selected order's additional details
     @GetMapping("/uc2ViewDetails")
     public String ViewDetails(Model model, @RequestParam Integer orderId) {
@@ -74,19 +67,6 @@ public class BakerController {
         model.addAttribute("allOrders", bakerService.findByStatus("Complete"));
         return "/uc2AllOrders";
     }
-
-    //Adds a new order to the list
-    @PostMapping("/uc2AddOneOrder")
-    public String postCreateCustomer(Model model, 
-    @RequestParam("customerId") Integer customerId,
-    @RequestParam("note") String note,
-    @RequestParam("status") String status)
-    {
-        Customers customer = customerService.findByCustomerId(customerId);
-        bakerService.addOrder(customerId , note, status, customer);
-        return "redirect:/uc2AddOrder";
-    } 
-
     //Changes the status of an order
     @GetMapping("/uc2MarkComplete")
     public String postCreateCustomer(Model model, @RequestParam("orderId") Integer orderId)
@@ -100,8 +80,8 @@ public class BakerController {
         return "redirect:/uc2AllOrders";
     } 
 
-    //mapping for deleting a customer
-    @PostMapping("/delete-order")
+    //mapping for deleting a order
+    @PostMapping("/remove-order")
     public String postDeleteOrder(Model model, @RequestParam("orderId") Integer orderId)
     {
         bakerService.deleteById(orderId);

@@ -31,6 +31,7 @@ public class OrdersQueue {
     String type;
     @Column(name="description")
     String description;
+    
     public OrdersQueue(String orderFName, String orderLName, String type, String date, String description) {
         this.orderFName = orderFName;
         this.orderLName = orderLName;
@@ -38,6 +39,7 @@ public class OrdersQueue {
         this.status = "Pending";
         this.date = date;
         this.description = description;
+        System.out.println(description);
     }
 
 }

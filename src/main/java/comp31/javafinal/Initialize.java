@@ -119,21 +119,28 @@ public class Initialize implements CommandLineRunner {
         employeeRepo.save(emp3);
         Accounts empAccount3 = new Accounts("Employee", emp3, null);
         accountRepo.save(empAccount3);
+
         //Default Orders
-        Order order1 = new Order( 14 , "Please add balloons and happy birthday", "Incomplete", cust1);
-        Order order2 = new Order( 15, "Orange icing and pumpkin drawings", "Incomplete", cust2);
-        Order order3 = new Order( 16, "Hearts and flowers drawn on the cake please", "Complete", cust3);
+        Order order1 = new Order(cust1.getFirstName(), cust1.getLastName(), "Incomplete", "2024/4/3", "Custom", "Orange icing with pumpkin drawings", cust1);
+        Order order2 = new Order(cust2.getFirstName(), cust2.getLastName(), "Incomplete", "2024/3/8", "Custom", "Pink with hearts", cust2);
+        Order order3 = new Order(cust3.getFirstName(), cust3.getLastName(), "Complete", "2023/9/10", "Custom", "Green cake please", cust3);
         //ORDERS ARE KIAN
-        
+
         orderRepo.save(order1);
+        orderRepo.save(order2);
+        orderRepo.save(order3);
+
         //MARCO DE MELO
         productsRepo.save(new Products("Baguette", "Made from the french", 7, 3.50));
         productsRepo.save(new Products("French Toast", "French Toast in the Morning", 2, 4.00));
         productsRepo.save(new Products("White Bread", "Plain", 4, 0.10));
         productsRepo.save(new Products("Cake","Really Fatening",9,5.50));
         //MARCO DE MELO
-        orderRepo.save(order2);
-        orderRepo.save(order3);
+
+
+        //Default Admin to log in with
+        Employees employee = new Employees("ad","min", "e" + 123,"password","Admin");
+        employeeRepo.save(employee);
 
 
         //EmailWriter being used to write to a file- testing, needed for product cancelation but didn't get their code
