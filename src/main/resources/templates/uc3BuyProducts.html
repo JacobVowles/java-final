@@ -56,12 +56,6 @@
                         Add Products
                     </a>
                 </li>
-                <li>
-                    <a href="/orderForm" class="nav-link text-white">
-                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                        Add Order
-                    </a>
-                </li>
             </ul>
             <hr>
             <div class="dropdown">
@@ -108,16 +102,19 @@
             </thead>
             
               <tbody>
-        <tr th:each="Products:${products}">
-            <td th:text="${Products.productName}"></td>
-            <td th:text="' '"></td>
-            <td th:text="${Products.description}"></td>
-             <td th:text="' '"></td>
-            <td th:text="${Products.Qty}"></td>
-            <td th:text="' '"></td>
-            <td th:text="${Products.Price}"></td>
-        </tr>
-        </tbody>
+                <tbody>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.id}"></td>
+                        <td th:text="' '"></td>
+                        <td th:text="${product.productName}"></td>
+                        <td th:text="' '"></td>
+                        <td th:text="${product.description}"></td>
+                        <td th:text="' '"></td>
+                        <td th:text="${product.Qty}"></td>
+                        <td th:text="' '"></td>
+                        <td th:text="${product.price}"></td>
+                    </tr>
+                </tbody>
     </table>
     <br>
     <h4>Products Below</h4>
@@ -127,7 +124,7 @@
                 <td th:text="${product.productName}"></td>
                 <td>
                     <label for="qty">Quantity:</label>
-                    <select  id="qty" name="quantities" required>
+                    <select name="quantities" required>
                         <option th:each="i : ${#numbers.sequence(0, product.Qty)}" th:value="${i}" th:text="${i}"></option>
                     </select>
                     <input type="hidden" name="productNames" th:value="${product.productName}" />
@@ -137,10 +134,8 @@
         <br>
         <button type="submit">Buy Selected Products</button>
     </form>
-    </table>
         </div>
-    </div>
-
+    
 </body>
 
 </html>
