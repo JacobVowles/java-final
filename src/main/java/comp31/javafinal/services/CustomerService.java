@@ -11,7 +11,16 @@ import comp31.javafinal.model.repos.CustomerRepo;
 @Service
 public class CustomerService {
     CustomerRepo customerRepo;
-    // ALL JACOB
+    private Integer currentUser;
+
+    public void setCurrentUser(Integer currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public Integer getCurrentUser() {
+        return currentUser;
+    }
+
     public CustomerService(CustomerRepo customerRepo) {
         this.customerRepo = customerRepo;
     }
@@ -46,7 +55,7 @@ public class CustomerService {
     public void createNewCustomer(String firstName, String lastName, String phoneNumber, String email, String password) {
         customerRepo.save(new Customers(firstName, lastName, phoneNumber, email,password));
     }
-
+    public Integer findCustomerIDByEmail(String email){return customerRepo.findCustomerIDbyEmail(email);}
     public void deleteById(Integer id) {
         customerRepo.deleteById(id);
     }

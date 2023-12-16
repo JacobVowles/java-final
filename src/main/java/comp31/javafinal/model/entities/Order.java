@@ -42,7 +42,7 @@ public class Order {
     String type;
     @Column(name="description")
     String description;
-    public Order(String orderFName, String orderLName, String status, String date, String description,String type) {
+    public Order(String orderFName, String orderLName, String status, String date, String description,String type,Int) {
         this.orderFName = orderFName;
         this.orderLName = orderLName;
         this.type = type;

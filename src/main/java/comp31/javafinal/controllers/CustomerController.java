@@ -16,7 +16,7 @@ import comp31.javafinal.model.repos.ProductsRepo;
 
 @Controller
 @RequestMapping
-
+@SessionAttributes("current-customerID")
 public class CustomerController {
     // MOST JACOB
     CustomerService customerService;
@@ -47,12 +47,14 @@ public class CustomerController {
     }
 
     @PostMapping("find-customer")
-    public String findCustomer(@RequestParam String email, @RequestParam String password) {
+    public String findCustomer(Model model,@RequestParam String email, @RequestParam String password) {
         email = email.trim();
         password = password.trim();
         Boolean customerFound = customerService.findByEmailAndPassword(email, password).size() > 0;
         if (customerFound) {
+            customerService.setCurrentUser(customerService.findCustomerIDByEmail(email));
             return "redirect:/uc3";
+
         }
         else
         {

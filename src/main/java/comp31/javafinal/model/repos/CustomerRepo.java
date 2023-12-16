@@ -13,7 +13,7 @@ public interface CustomerRepo extends ListCrudRepository<Customers, Integer> {
 // ListCrudRepository lets us use methods in use in the repo classes. (Methods such as save, delete, findAll, etc.)
 
 //Custom methods below
-// ALL JACOB
+
 List<Customers> findByEmail(String email);
 
 List<Customers> findByFirstName(String firstName);
@@ -28,7 +28,8 @@ List<Customers> findByFirstNameAndLastName(String firstName, String lastName);
 
 @Query("SELECT c FROM Customers c WHERE LOWER(c.firstName) LIKE LOWER(CONCAT('%',:firstName,'%'))")
 List<Customers> findByFirstNameLike(String firstName);
-
+@Query("SELECT customerId FROM Customers WHERE email =?1")
+Integer findCustomerIDbyEmail(String email);
 void deleteById(Integer id);
 
 }

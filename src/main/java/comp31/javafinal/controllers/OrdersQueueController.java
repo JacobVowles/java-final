@@ -43,13 +43,13 @@ public class OrdersQueueController {
     @GetMapping("/orderQueue")
     public String getBuy(Model model) {
         model.addAttribute("Orders", ordersQueueService.findAll());
+        logger.info(String.valueOf(model.asMap().keySet()));
         return "orderQueue";
     }
     @PostMapping("/addOrder")
     public String addItem(@RequestParam("orderFName") String fName,@RequestParam("orderLName") String lName,
                           @RequestParam("date") String date, @RequestParam("type") String type, @RequestParam("description") String description) {
-        // Saving a new order to the repository
-        ordersQueueRepo.save(new OrdersQueue(fName, lName, type, date, description));
+        
         return "orderForm";
     }
 
