@@ -10,9 +10,9 @@
       href="../static/css/styles.css"
     />
     <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-  />
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
     <title>Sign Up</title>
   </head>
   <body>
@@ -41,10 +41,16 @@
           >
             <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
             <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-            <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-            <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
             <li>
-              <a href="#" class="nav-link px-2 text-white">Place an order</a>
+              <a href="/BuyProducts" class="nav-link px-2 text-white"
+                >Pricing</a
+              >
+            </li>
+            <li><a href="/faq" class="nav-link px-2 text-white">FAQs</a></li>
+            <li>
+              <a href="/customer-login" class="nav-link px-2 text-white"
+                >Place an order</a
+              >
             </li>
           </ul>
           <h2 class="title-name mb-0">Best Bakery</h2>
@@ -79,7 +85,7 @@
       </div>
     </header>
     <div class="flexItem2">
-      <br><br>
+      <br /><br />
       <div class="data-entry">
         <form action="/create-customer" method="POST">
           <h1 class="h3 mb-4">Sign up</h1>
@@ -109,8 +115,8 @@
               </div>
             </div>
           </div>
-            <br>
-            <div class="form-floating">
+          <br />
+          <div class="form-floating">
             <input
               type="text"
               class="form-control"
@@ -119,35 +125,35 @@
               name="email"
             />
             <label for="email">Email</label>
-            <br>
+            <br />
             <div class="form-floating">
-            <input
-              type="text"
-              class="form-control"
-              id="phoneNumber"
-              placeholder=""
-              name="phoneNumber"
-            />
-            <label for="phoneNumber">Phone Number</label>
-            <br>
-            <div class="form-floating">
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              placeholder=""
-              name="password"
-            />
-            <label for="password">Password</label>
-            <br>
+              <input
+                type="text"
+                class="form-control"
+                id="phoneNumber"
+                placeholder=""
+                name="phoneNumber"
+              />
+              <label for="phoneNumber">Phone Number</label>
+              <br />
+              <div class="form-floating">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder=""
+                  name="password"
+                />
+                <label for="password">Password</label>
+                <br />
+              </div>
+              <button class="btn btn-primary w-100 py-2" type="submit">
+                Sign up
+              </button>
+            </div>
           </div>
-          <button class="btn btn-primary w-100 py-2" type="submit">
-            Sign up
-          </button>
-            </div>
-            </div>
         </form>
-        </div>
-  </div>
+      </div>
+    </div>
   </body>
 </html>
