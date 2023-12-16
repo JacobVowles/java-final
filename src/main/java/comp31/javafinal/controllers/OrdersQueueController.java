@@ -63,6 +63,7 @@ public class OrdersQueueController {
         ordersQueueService.deleteByID(orderId);
         return "redirect:/orderQueue";
     }
+    
     @PostMapping("/approve-order")
     public String postApproveOrder(@RequestParam("orderId") Integer orderId)
     {
