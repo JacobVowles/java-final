@@ -77,6 +77,17 @@ a:visited {
   color: rgb(169, 54, 31);
 }
 
+#myCarousel {
+  width: 100vw;
+  height: 70vh;
+}
+
+.carousel-item img {
+  width: 100vw;
+  height: 70vh;
+  object-fit: cover;
+}
+
 header {
   width: 100vw;
 }

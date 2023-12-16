@@ -46,6 +46,12 @@
               Add Products
             </a>
           </li>
+        <li>
+          <a href="/orderForm" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+            Add Order
+          </a>
+        </li>
       </ul>
       <hr>
       <div class="dropdown ">
@@ -63,40 +69,7 @@
     </div>
     <div class="flexItem2">
       <h1>Customer Home</h1>
-      <h2> Products Listing Below</h2>
-      <table id="buy">
-        <table border="1">
-            <!--table borders not actually displaying???-->
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th th:text="'&nbsp;'"></th>
-                    <th>Name</th>
-                    <th th:text="'&nbsp;'"></th>
-                    <th>Description</th>
-                    <th th:text="'&nbsp;'"></th>
-                    <th>Qty </th>
-                    <th th:text="'&nbsp;'"></th>
-                    <th colspan="2">Price</th>
-                </tr>
-            </thead>
-            
-              <tbody>
-                <tbody>
-                    <tr th:each="product : ${products}">
-                        <td th:text="${product.id}"></td>
-                        <td th:text="' '"></td>
-                        <td th:text="${product.productName}"></td>
-                        <td th:text="' '"></td>
-                        <td th:text="${product.description}"></td>
-                        <td th:text="' '"></td>
-                        <td th:text="${product.Qty}"></td>
-                        <td th:text="' '"></td>
-                        <td th:text="${product.price}"></td>
-                    </tr>
-                </tbody>
-    </table>
-    <h3> Custom Orders price varies on what the customer asks </h3>
+
     </div>
    
   </div>

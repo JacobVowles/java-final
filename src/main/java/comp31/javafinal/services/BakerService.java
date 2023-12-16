@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import comp31.javafinal.model.entities.Customers;
-
 import comp31.javafinal.model.entities.Order;
 import comp31.javafinal.model.repos.OrderRepo;
 
@@ -27,10 +25,6 @@ public class BakerService {
 
     public Order findByOrderId(Integer id) {
         return orderRepo.findByOrderId(id);
-    }
-
-    public void addOrder(Integer customerId, String note, String status, Customers customer) {
-        orderRepo.save(new Order(customerId, note, status, customer));
     }
 
     public void deleteById(Integer id) {

@@ -16,6 +16,18 @@ public class CustomerService {
         return customerRepo.findByCustomerId(customerId);
     } //made for many to one - Ian
 
+    private Customers currentUser;
+
+    public void setCurrentUser(Customers currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public Customers getCurrentUser() {
+        return currentUser;
+    }
+
+
+
     public CustomerService(CustomerRepo customerRepo) {
         this.customerRepo = customerRepo;
     }
@@ -27,7 +39,6 @@ public class CustomerService {
     public List<Customers> findByEmail(String email) {
         return customerRepo.findByEmail(email);
     }
-
 
     public List<Customers> findByFirstNameLike(String firstName) {
         return customerRepo.findByFirstNameLike(firstName);
@@ -47,11 +58,10 @@ public class CustomerService {
     public List<Customers> findByFirstNameAndLastName(String firstName, String lastName) {
         return customerRepo.findByFirstNameAndLastName(firstName, lastName);
     }
-
+    public Customers findCustomerByEmailAndPassword(String email, String password){return customerRepo.findCustomerByEmailAndPassword(email,password);}
     public void createNewCustomer(String firstName, String lastName, String phoneNumber, String email, String password) {
         customerRepo.save(new Customers(firstName, lastName, phoneNumber, email,password));
     }
-
     public void deleteById(Integer id) {
         customerRepo.deleteById(id);
     }
