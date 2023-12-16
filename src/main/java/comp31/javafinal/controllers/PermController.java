@@ -1,9 +1,7 @@
 package comp31.javafinal.controllers;
 
-//import java.util.List;
-//import comp31.javafinal.model.entities.Perms;
 import comp31.javafinal.model.entities.Employees;
-//import comp31.javafinal.model.entities.Perms;
+
 
 import org.springframework.ui.Model;
 import org.slf4j.LoggerFactory;
@@ -15,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.slf4j.Logger;
 import comp31.javafinal.services.PermsService;
-//import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 // Ian Haworth
@@ -39,20 +37,6 @@ public class PermController {
         model.addAttribute("users", permsService.findAll());
         return "perms-admin";
     }
-    
-    /* 
-    @PostMapping("/login")
-    public String getForm(Employees perms, @RequestParam String password, Model model) {
-        Employees currentUser = permsService.findByEmployeeNumber(perms.getEmployeeNumber());
-        String returnPage = permsService.login(currentUser, password);
-        
-        if (currentUser != null) {
-            model.addAttribute("user", currentUser);
-        }
-        model.addAttribute("users", permsService.findAll());
-        return returnPage;
-    }
-    */
 
     @GetMapping("changeRoles")
     public String changeRoles() {
