@@ -80,8 +80,8 @@ public class BakerController {
         return "redirect:/uc2AllOrders";
     } 
 
-    //mapping for deleting a customer
-    @PostMapping("/delete-order")
+    //mapping for deleting a order
+    @PostMapping("/remove-order")
     public String postDeleteOrder(Model model, @RequestParam("orderId") Integer orderId)
     {
         bakerService.deleteById(orderId);

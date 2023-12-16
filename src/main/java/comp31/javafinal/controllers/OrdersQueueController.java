@@ -4,7 +4,6 @@ package comp31.javafinal.controllers;
 
 import comp31.javafinal.model.entities.Order;
 import comp31.javafinal.model.entities.OrdersQueue;
-import comp31.javafinal.model.repos.CustomerRepo;
 import comp31.javafinal.model.repos.OrderRepo;
 import comp31.javafinal.model.repos.OrdersQueueRepo;
 import comp31.javafinal.services.CustomerService;

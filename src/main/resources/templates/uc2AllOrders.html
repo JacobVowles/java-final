@@ -89,6 +89,9 @@
                 <button>Change Status</button>
             </form>
             </td>
+            <td th:text="${order.customer.firstName}"></td>
+            <td th:text="${order.customer.lastName}"></td>
+            <td th:text="${order.customer.customerId}"></td>
 
         </tr>
     </tr>
@@ -110,4 +113,3 @@
   </div>
   </body>
 </html>
-

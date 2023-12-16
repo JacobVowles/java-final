@@ -119,7 +119,7 @@
             <td th:text="${order.customer.lastName}"></td>
             <td th:text="${order.customer.customerId}"></td>
             <td>
-              <form th:action="@{/delete-order}" method="POST">
+              <form th:action="@{/remove-order}" method="POST">
                 <input type="hidden" name="orderId" th:value="${order.orderId}" class="hidden-input"/>
                 <button class="delete-buttons">X</button>
               </form>            
